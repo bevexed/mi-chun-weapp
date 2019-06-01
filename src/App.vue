@@ -1,9 +1,16 @@
 <script lang="ts">
-    import Vue from 'vue';
-    export default Vue.extend({
+	import {reqGetLogin} from "@/api";
+	import Vue from 'vue';
+
+	export default Vue.extend({
         mpType: 'app',
         onLaunch() {
             console.log('App Launch')
+					reqGetLogin({code:'1123'}).then(
+						res=>{
+							console.log(res);
+						}
+					)
         },
         onShow() {
             console.log('App Show')

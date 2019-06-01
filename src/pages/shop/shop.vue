@@ -1,5 +1,7 @@
 <template>
-
+<div>
+    123s
+</div>
 </template>
 
 <script lang="ts">
