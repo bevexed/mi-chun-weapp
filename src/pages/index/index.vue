@@ -28,8 +28,6 @@
 
 			<section class="card">
 				<div class="chart-title">十亿消费佣金池</div>
-
-
 				<section class="notice">
 					<uni-notice-bar
 						background-color="#ffffff"
@@ -72,7 +70,108 @@
 				</section>
 			</section>
 
+
+			<section class="pattern">
+				<header>
+					<div class="left">
+						<div>
+							<span class="label">	合伙人：</span>
+							<span class="value">杭州吴彦祖</span>
+							<span class="id">ID：12321321312</span>
+						</div>
+
+						<div class="note">
+							（注：合伙人40天内未消费40元以上商品
+							或未有其他用户绑定，用户加成额度减半）
+						</div>
+					</div>
+
+
+					<div class="right">
+						<MyButton height="56" title="解绑" width="160"></MyButton>
+						<div>
+							活跃倒计时：<span>0 </span> 天
+						</div>
+					</div>
+
+				</header>
+
+				<section class="detail bbt">
+					<div class="title">
+						佣金额度
+						<!--						<img alt="" src="">-->
+					</div>
+
+					<div class="tr tr-title">
+						<div></div>
+						<div>初始额度</div>
+						<div></div>
+						<div>绑定加成额度</div>
+						<div></div>
+						<div>最终额度</div>
+					</div>
+
+					<div class="tr">
+						<div>雾化器</div>
+						<div>25%</div>
+						<div>+</div>
+						<div>7.5%</div>
+						<div>=</div>
+						<div>32.5</div>
+					</div>
+
+					<div class="tr">
+						<div>雾化弹</div>
+						<div>25%</div>
+						<div>+</div>
+						<div>7.5%</div>
+						<div>=</div>
+						<div>32.5</div>
+					</div>
+
+				</section>
+
+
+				<section class="detail">
+					<div class="title">消费返利额度 </div>
+
+					<div class="tr tr-title">
+						<div></div>
+						<div>初始额度</div>
+						<div></div>
+						<div>绑定加成额度</div>
+						<div></div>
+						<div>最终额度</div>
+					</div>
+
+					<div class="tr">
+						<div>雾化器</div>
+						<div>25%</div>
+						<div>+</div>
+						<div>7.5%</div>
+						<div>=</div>
+						<div>32.5</div>
+					</div>
+
+					<div class="tr">
+						<div>雾化弹</div>
+						<div>25%</div>
+						<div>+</div>
+						<div>7.5%</div>
+						<div>=</div>
+						<div>32.5</div>
+					</div>
+				</section>
+			</section>
+
 		</footer>
+
+		<div class="margin-40">
+			<my-button
+				title="分享推广商品"
+			></my-button>
+		</div>
+
 	</view>
 </template>
 
@@ -81,6 +180,7 @@
 	import Vue from 'vue';
 	import PieChart from './PieChart.vue'
 
+	import MyButton from '@/components/button/button.vue'
 	import {uniNoticeBar} from "@dcloudio/uni-ui"
 
 	export default Vue.extend({
@@ -90,6 +190,7 @@
 			components: {
 				'pie-chart': PieChart,
 				uniNoticeBar,
+				MyButton
 			},
 			onLoad() {
 
@@ -102,6 +203,8 @@
 <style lang="scss" scoped>
 	@import "../../uni";
 	.content {
+		width: upx(750);
+		overflow-x: hidden;
 		.board {
 			background: $theme-background-color;
 			color: #fff;
@@ -247,6 +350,129 @@
 			}
 
 		}
+
+
+		.pattern {
+			@extend .card;
+			margin-top: upx(40);
+			height: auto;
+			text-align: left;
+
+			header {
+				height: upx(160);
+				display: flex;
+				justify-content: space-between;
+				@include bbt;
+
+				.left {
+					width: upx(380);
+
+
+					.label {
+						@include bold(20)
+					}
+
+					.value {
+						@include bold(24)
+					}
+
+					.id {
+						margin-left: upx(4);
+						font-size: $font-size-20;
+					}
+
+					.note {
+						font-size: $font-size-20;
+						color: #666;
+					}
+				}
+
+
+				.right {
+					height: upx(200);
+					width: upx(170);
+					@include bold(20);
+					margin-right: upx(20);
+
+					div {
+						display: flex;
+						align-items: center;
+						justify-content: flex-end;
+						margin-top: upx(18);
+
+						span {
+							@include bold(32);
+							margin-right: upx(2);
+							flex: 1;
+						}
+					}
+				}
+			}
+
+			.detail {
+				height: upx(230);
+
+				&.bbt {
+					@include bbt;
+				}
+
+				.title {
+					@include bold(32);
+					text-align: center;
+					margin-top: upx(32);
+					margin-bottom: upx(20);
+				}
+
+
+				.tr {
+					display: flex;
+					font-size: $font-size-20;
+					font-family: PingFangSC-Regular, serif;
+					font-weight: 400;
+					color: rgba(102, 102, 102, 1);
+
+					> div {
+						margin-bottom: upx(16);
+					}
+
+					&-title {
+						@include bold(20)
+					}
+
+					:nth-child(1) {
+						@include bold(20);
+						width: upx(140);
+						text-align: center;
+					}
+
+					:nth-child(2) {
+						width: upx(120);
+						text-align: center;
+					}
+
+					:nth-child(3) {
+						width: upx(40);
+						text-align: center;
+					}
+
+					:nth-child(4) {
+						width: upx(150);
+						text-align: center;
+					}
+
+					:nth-child(5) {
+						width: upx(88);
+						text-align: center;
+					}
+
+					:nth-child(6) {
+						width: upx(100);
+						text-align: center;
+					}
+				}
+			}
+		}
+
 
 	}
 

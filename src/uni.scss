@@ -29,6 +29,10 @@
 	padding: 0 upx($size);
 }
 
+.margin-40{
+	padding-bottom: upx(40);
+}
+
 /* 字体 */
 $font-size-24: upx(24);
 $font-size-20: upx(20);
@@ -41,6 +45,11 @@ $font-size-68: upx(68);
 	color: rgba(0, 0, 0, 1);
 }
 
+
+/* 边框 */
+@mixin bbt{
+	border-bottom: 1px solid #f2f2f2;
+}
 
 /* 颜色变量 */
 $theme-background-color: #000;
