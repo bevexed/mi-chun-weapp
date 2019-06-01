@@ -1,41 +1,38 @@
 <template>
-	<view class="content">
+    <view class="content">
         <image class="logo" src="../../static/logo.png"></image>
-		<view>
+        <view>
             <text class="title">{{title}}</text>
         </view>
-	</view>
+    </view>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-	export default Vue.extend({
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
 
-		},
-		methods: {
+    export default Vue.extend({
+        data() {
+            return {
+                title: 'Hello'
+            }
+        },
+        onLoad() {
 
-		}
-	});
+        },
+        methods: {}
+    });
 </script>
 
-<style>
-	.content {
-		text-align: center;
-		height: 400upx;
-	}
-    .logo{
-        height: 200upx;
-        width: 200upx;
-        margin-top: 200upx;
+<style lang="scss">
+    .content {
+        text-align: center;
+        height: upx(10);
+
+        .logo {
+            height: upx(10);
+            width: upx(20);
+        }
     }
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+
+
 </style>

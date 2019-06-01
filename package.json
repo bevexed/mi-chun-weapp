@@ -34,6 +34,9 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
     "@babel/plugin-syntax-typescript": "^7.2.0",
     "@dcloudio/types": "*",
     "@dcloudio/uni-cli-shared": "*",
