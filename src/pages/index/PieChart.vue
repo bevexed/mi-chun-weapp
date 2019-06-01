@@ -1,11 +1,12 @@
 <template>
 	<view class="content">
 		<view class="qiun-columns">
-			<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
-				<view class="qiun-title-dot-light">饼状图</view>
-			</view>
 			<view class="qiun-charts">
-				<canvas @touchstart="touchPie" canvas-id="canvasPie" class="charts" id="canvasPie"></canvas>
+				<canvas
+					@touchstart="touchPie"
+					canvas-id="canvasPie"
+					class="charts"
+					id="canvasPie"></canvas>
 			</view>
 		</view>
 	</view>
@@ -23,8 +24,8 @@
 	export default Vue.extend({
 			data() {
 				return {
-					cWidth: '',
-					cHeight: '',
+					cWidth: 200,
+					cHeight: 200,
 					pixelRatio: 1,
 					serverData: '',
 				}
@@ -32,9 +33,9 @@
 			mounted() {
 				_self = this;
 				//@ts-ignore
-				this.cWidth = uni.upx2px(750);
+				this.cWidth = uni.upx2px(300);
 				//@ts-ignore
-				this.cHeight = uni.upx2px(500);
+				this.cHeight = uni.upx2px(300);
 				this.getServerData();
 			},
 			methods: {
@@ -65,14 +66,14 @@
 						canvasId: canvasId,
 						type: 'pie',
 						fontSize: 11,
-						legend: true,
 						background: '#FFFFFF',
 						pixelRatio: _self.pixelRatio,
 						series: chartData.series,
 						animation: true,
 						width: _self.cWidth * _self.pixelRatio,
 						height: _self.cHeight * _self.pixelRatio,
-						dataLabel: true,
+						legend: false,
+						dataLabel: false,
 						extra: {
 							pie: {
 								//@ts-ignore
@@ -95,16 +96,9 @@
 	);
 </script>
 
-<style lang="scss">
-	.content {
-		text-align: center;
-		height: upx(10);
-
-		.logo {
-			height: upx(10);
-			width: upx(20);
-		}
+<style lang="scss" scoped>
+	.charts {
+		width: upx(300);
 	}
-
 
 </style>

@@ -697,6 +697,11 @@
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-h5/download/@dcloudio/uni-h5-0.5.6.tgz#44ad475baeb4b9c20fc895e0e8ad9b2d215ddfd0"
   integrity sha1-RK1HW660ucIPyJXg6K2bLSFd39A=
 
+"@dcloudio/uni-h5@^0.4.0":
+  version "0.4.9"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-h5/download/@dcloudio/uni-h5-0.4.9.tgz#0e4e9c72dc22d2161e7bb710b18c01ad25f57d70"
+  integrity sha1-Dk6cctwi0hYee7cQsYwBrSX1fXA=
+
 "@dcloudio/uni-mp-alipay@*":
   version "0.0.814"
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-alipay/download/@dcloudio/uni-mp-alipay-0.0.814.tgz#979c47e88dde19244cc7e0630bb6b43bc7692a89"
@@ -707,15 +712,30 @@
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-baidu/download/@dcloudio/uni-mp-baidu-0.0.840.tgz#be064e7d41d178e8c70007495a6ad4138334e52c"
   integrity sha1-vgZOfUHReOjHAAdJWmrUE4M05Sw=
 
+"@dcloudio/uni-mp-baidu@0.0.812":
+  version "0.0.812"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-baidu/download/@dcloudio/uni-mp-baidu-0.0.812.tgz#c5bc94b5fc9f11515160cd8a1e7a5c14b622b34b"
+  integrity sha1-xbyUtfyfEVFRYM2KHnpcFLYis0s=
+
 "@dcloudio/uni-mp-toutiao@*":
   version "0.0.338"
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-toutiao/download/@dcloudio/uni-mp-toutiao-0.0.338.tgz#768d2a9bfeacd7030eef21aa64084b50584334ee"
   integrity sha1-do0qm/6s1wMO7yGqZAhLUFhDNO4=
 
+"@dcloudio/uni-mp-toutiao@0.0.312":
+  version "0.0.312"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-toutiao/download/@dcloudio/uni-mp-toutiao-0.0.312.tgz#1a51f8af062b06d6512b4b998ffe389c59492dc1"
+  integrity sha1-GlH4rwYrBtZRK0uZj/44nFlJLcE=
+
 "@dcloudio/uni-mp-weixin@*":
   version "0.0.960"
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-0.0.960.tgz#6e1d582ebb6448eb3ebe8cffc4ffcfbef8ead249"
   integrity sha1-bh1YLrtkSOs+voz/xP/Pvvjq0kk=
+
+"@dcloudio/uni-mp-weixin@0.0.912":
+  version "0.0.912"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-0.0.912.tgz#b5e691dcd2ea4c68ba88057b73ceb99642cda852"
+  integrity sha1-teaR3NLqTGi6iAV7c865lkLNqFI=
 
 "@dcloudio/uni-template-compiler@*":
   version "0.9.175"
@@ -726,6 +746,20 @@
     "@babel/traverse" "^7.3.3"
     "@babel/types" "^7.3.3"
     vue-template-compiler "^2.6.10"
+
+"@dcloudio/uni-ui@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-ui/download/@dcloudio/uni-ui-0.0.8.tgz#4364a819b7aef195034860438c0d11d5c9588820"
+  integrity sha1-Q2SoGbeu8ZUDSGBDjA0R1clYiCA=
+  dependencies:
+    "@dcloudio/uni-h5" "^0.4.0"
+    "@dcloudio/uni-mp-alipay" "*"
+    "@dcloudio/uni-mp-baidu" "0.0.812"
+    "@dcloudio/uni-mp-toutiao" "0.0.312"
+    "@dcloudio/uni-mp-weixin" "0.0.912"
+    flyio "^0.6.14"
+    vue "^2.6.9"
+    vuex "^3.1.0"
 
 "@dcloudio/vue-cli-plugin-hbuilderx@latest":
   version "0.9.519"
@@ -3640,7 +3674,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-flyio@^0.6.2:
+flyio@^0.6.14, flyio@^0.6.2:
   version "0.6.14"
   resolved "https://registry.npm.taobao.org/flyio/download/flyio-0.6.14.tgz#c5d83eb7a9b4fc1c915a463d2ea6dfce755c2d6f"
   integrity sha1-xdg+t6m0/ByRWkY9LqbfznVcLW8=
@@ -8530,12 +8564,12 @@ vue-template-es2015-compiler@^1.2.2, vue-template-es2015-compiler@^1.6.0, vue-te
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.10:
+vue@^2.6.10, vue@^2.6.9:
   version "2.6.10"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=
 
-vuex@^3.0.1:
+vuex@^3.0.1, vuex@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.1.tgz#0c264bfe30cdbccf96ab9db3177d211828a5910e"
   integrity sha1-DCZL/jDNvM+Wq52zF30hGCilkQ4=
