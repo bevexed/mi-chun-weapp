@@ -65,6 +65,18 @@
 			"style": {
 				"navigationBarTitleText": "消息详情"
 			}
+		},
+		{
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "地址"
+			}
+		},
+		{
+			"path": "pages/add-address/add-address",
+			"style": {
+				"navigationBarTitleText": "新增地址"
+			}
 		}
 	],
 	"tabBar": {
@@ -133,7 +145,15 @@
 			},
 			{
 				"name": "message-detail",
-				"path":"pages/message-detail/message-detail"
+				"path": "pages/message-detail/message-detail"
+			},
+			{
+				"name": "address",
+				"path": "pages/address/address"
+			},
+			{
+				"name": "add-address",
+				"path": "pages/add-address/add-address"
 			}
 		]
 	}

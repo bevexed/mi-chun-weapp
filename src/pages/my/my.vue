@@ -47,7 +47,7 @@
 
 			<footer>
 				<ul>
-					<li>
+					<li @tap="toAddress">
 						<div class="icon">
 							<div></div>
 						</div>
@@ -81,25 +81,31 @@
 		methods: {
 			toAccount() {
 				uni.navigateTo({
-					url:'/pages/account/account'
+					url: '/pages/account/account'
 				})
 			},
 
-			toMyOrder(){
+			toMyOrder() {
 				uni.navigateTo({
-					url:'/pages/my-order/my-order'
+					url: '/pages/my-order/my-order'
 				})
 			},
 
-			toCustomerList(){
+			toCustomerList() {
 				uni.navigateTo({
-					url:'/pages/customer-list/customer-list'
+					url: '/pages/customer-list/customer-list'
 				})
 			},
 
-			toMessage(){
+			toAddress() {
 				uni.navigateTo({
-					url:'/pages/message/message'
+					url: '/pages/address/address'
+				})
+			},
+
+			toMessage() {
+				uni.navigateTo({
+					url: '/pages/message/message'
 				})
 			}
 		}
@@ -196,7 +202,6 @@
 						border-color: #999;
 						border-style: solid;
 						content: '';
-
 					}
 				}
 			}

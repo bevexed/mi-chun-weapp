@@ -8,6 +8,7 @@ declare module '@dcloudio/uni-ui' {
 	let uniNoticeBar: any;
 	let uniList: any;
 	let uniListItem: any;
+	let uniIcon: any;
 	let uniCollapse: any;
 	let uniCollapseItem: any;
 
