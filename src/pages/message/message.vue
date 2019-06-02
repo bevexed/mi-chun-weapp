@@ -2,7 +2,7 @@
 	<div class="message">
 		<ul>
 			<li
-				@tap="fun"
+				@tap="toMessageDetail"
 			>
 				<img alt="" src="../../static/out-b.png">
 
@@ -19,7 +19,7 @@
 			</li>
 
 			<li
-				@tap="fun"
+				@tap="toMessageDetail"
 			>
 				<img alt="" src="../../static/out-b.png">
 
@@ -36,7 +36,7 @@
 			</li>
 
 			<li
-				@tap="fun"
+				@tap="toMessageDetail"
 			>
 				<img alt="" src="../../static/out-b.png">
 
@@ -64,8 +64,10 @@
 	export default Vue.extend({
 		name: "message",
 		methods: {
-			fun() {
-
+			toMessageDetail() {
+				uni.navigateTo({
+					url: "/pages/message-detail/message-detail",
+				})
 			}
 		}
 	})

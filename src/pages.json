@@ -59,6 +59,12 @@
 			"style": {
 				"navigationBarTitleText": "消息中心"
 			}
+		},
+		{
+			"path": "pages/message-detail/message-detail",
+			"style": {
+				"navigationBarTitleText": "消息详情"
+			}
 		}
 	],
 	"tabBar": {
@@ -124,6 +130,10 @@
 			{
 				"name": "message",
 				"path": "pages/message/message"
+			},
+			{
+				"name": "message-detail",
+				"path":"pages/message-detail/message-detail"
 			}
 		]
 	}
