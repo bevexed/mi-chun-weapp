@@ -35,6 +35,12 @@
 			"style": {
 				"navigationBarTitleText": "明细"
 			}
+		},
+		{
+			"path": "pages/my-order/my-order",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
 		}
 	],
 	"tabBar": {
@@ -81,6 +87,9 @@
 		},{
 			"name": "account-detail",
 			"path": "pages/account-detail/account-detail"
+		},{
+			"name": "my-order",
+			"path": "pages/my-order/my-order"
 		}]
 	}
 }

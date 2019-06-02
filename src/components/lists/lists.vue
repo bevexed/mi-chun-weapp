@@ -74,6 +74,7 @@
 	})
 </script>
 
+
 <style lang="scss" scoped>
 	@import "../../uni";
 
@@ -89,7 +90,7 @@
 
 				&.close:after {
 					position: absolute;
-					top: 0;
+					top: upx(4);
 					right: upx(10);
 					bottom: 0;
 					margin: auto;
@@ -104,6 +105,7 @@
 
 				&.open:after {
 					@extend .close;
+					top: upx(-4);
 					transform: rotate(-135deg);
 				}
 			}

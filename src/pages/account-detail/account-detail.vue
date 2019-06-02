@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import Vue from 'vue'
-	import MyList from "@/components/list/lists.vue"
+	import MyList from "../../components/lists/lists.vue"
 
 
 	export default Vue.extend({

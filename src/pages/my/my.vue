@@ -20,7 +20,8 @@
 							<span class="value">10000.00</span>
 						</div>
 					</li>
-					<li>
+
+					<li @click="toMyOrder">
 						<div class="icon">
 							<div></div>
 						</div>
@@ -79,6 +80,12 @@
 			toAccount() {
 				uni.navigateTo({
 					url:'/pages/account/account'
+				})
+			},
+
+			toMyOrder(){
+				uni.navigateTo({
+					url:'/pages/my-order/my-order'
 				})
 			}
 		}
