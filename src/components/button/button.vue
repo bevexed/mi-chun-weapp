@@ -4,7 +4,10 @@
 			:style="{
 			width:width/2+'px',
 			height:height/2+'px',
-			lineHeight:height/2+'px'
+			lineHeight:height/2+'px',
+			background: backgroundColor,
+			color:color,
+			margin:`${margin/2}px auto`,
 		}" class="button">{{title}}
 		</button>
 	</view>
@@ -27,6 +30,18 @@
 			width: {
 				type: Number,
 				default: 670,
+			},
+			backgroundColor: {
+				type: String,
+				default: '#000',
+			},
+			color: {
+				type: String,
+				default: '#fff',
+			},
+			margin: {
+				type: Number,
+				default: 0
 			}
 		}
 	})
@@ -39,5 +54,6 @@
 		font-size: upx(24);
 		font-family: PingFangSC-Regular, serif;
 		font-weight: 400;
+		box-shadow: upx(4) upx(4) upx(20) 0 rgba(0, 0, 0, 0.25);
 	}
 </style>

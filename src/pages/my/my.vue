@@ -11,7 +11,7 @@
 		<section class="footer">
 			<header>
 				<ul>
-					<li>
+					<li @click="toAccount">
 						<div class="icon">
 							<div></div>
 						</div>
@@ -39,7 +39,6 @@
 						</div>
 					</li>
 
-
 				</ul>
 
 			</header>
@@ -65,19 +64,25 @@
 						</div>
 					</li>
 
-
 				</ul>
 			</footer>
 		</section>
-</div>
+	</div>
 </template>
 
 <script lang="ts">
 	import Vue from 'vue'
 
 	export default Vue.extend({
-        name: "my"
-    })
+		name: "my",
+		methods: {
+			toAccount() {
+				uni.navigateTo({
+					url:'/pages/account/account'
+				})
+			}
+		}
+	})
 </script>
 
 <style lang="scss" scoped>
