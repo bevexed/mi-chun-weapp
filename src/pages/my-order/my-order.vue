@@ -50,7 +50,7 @@
 				<!-- 待发货 -->
 				<footer class="footer" v-if="i  === 1">
 					<div class="buttons">
-						<my-button height="50" title="取消订单" width="160"></my-button>
+						<my-button height="50" title="取消订单" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -61,7 +61,7 @@
 				<!-- 订单完成 -->
 				<footer class="footer"  v-if="i  === 2">
 					<div class="buttons">
-						<my-button height="50" title="申请售后" width="160"></my-button>
+						<my-button height="50" title="申请售后" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -82,7 +82,7 @@
 				<!-- 售后未通过 -->
 				<footer class="footer"  v-if="i  === 4">
 					<div class="buttons">
-						<my-button height="50" title="申请售后" width="160"></my-button>
+						<my-button height="50" title="申请售后" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -93,8 +93,8 @@
 				<!-- 待付款 -->
 				<footer class="footer"  v-if="i  === 5">
 					<div class="buttons">
-						<my-button height="50" title="去支付" width="160"></my-button>
-						<my-button background-color="#fff" color="#000" height="50" title="取消订单" width="160"></my-button>
+						<my-button height="50" title="去支付" width="180"></my-button>
+						<my-button background-color="#fff" color="#000" height="50" title="取消订单" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -105,8 +105,8 @@
 				<!-- 已发货 -->
 				<footer class="footer"  v-if="i  === 6">
 					<div class="buttons">
-						<my-button height="50" title="确认收货" width="160"></my-button>
-						<my-button background-color="#fff" color="#000" height="50" title="查看物流" width="160"></my-button>
+						<my-button height="50" title="确认收货" width="180"></my-button>
+						<my-button background-color="#fff" color="#000" height="50" title="查看物流" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -117,7 +117,7 @@
 				<!-- 售后中 -->
 				<footer class="footer"  v-if="i  === 7">
 					<div class="buttons">
-						<my-button height="50" title="取消售后" width="160"></my-button>
+						<my-button height="50" title="取消售后" width="180"></my-button>
 					</div>
 
 					<div class="state">
@@ -175,6 +175,9 @@
 			background: #fff;
 			margin: upx(20) 0 0 0;
 			padding: upx(30) upx(30) 0;
+			&:last-child{
+				margin-bottom: upx(40);
+			}
 
 			header {
 				display: flex;

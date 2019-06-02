@@ -41,6 +41,24 @@
 			"style": {
 				"navigationBarTitleText": "我的订单"
 			}
+		},
+		{
+			"path": "pages/customer-list/customer-list",
+			"style": {
+				"navigationBarTitleText": "客户列表"
+			}
+		},
+		{
+			"path": "pages/customer-list-buy/customer-list-buy",
+			"style": {
+				"navigationBarTitleText": "客户已购买商品"
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "消息中心"
+			}
 		}
 	],
 	"tabBar": {
@@ -78,18 +96,35 @@
 	},
 	"condition": {
 		"current": 2,
-		"list": [{
-			"name": "account",
-			"path": "pages/account/account"
-		},{
-			"name": "withdraw",
-			"path": "pages/withdraw/withdraw"
-		},{
-			"name": "account-detail",
-			"path": "pages/account-detail/account-detail"
-		},{
-			"name": "my-order",
-			"path": "pages/my-order/my-order"
-		}]
+		"list": [
+			{
+				"name": "account",
+				"path": "pages/account/account"
+			},
+			{
+				"name": "withdraw",
+				"path": "pages/withdraw/withdraw"
+			},
+			{
+				"name": "account-detail",
+				"path": "pages/account-detail/account-detail"
+			},
+			{
+				"name": "my-order",
+				"path": "pages/my-order/my-order"
+			},
+			{
+				"name": "customer-list",
+				"path": "pages/customer-list/customer-list"
+			},
+			{
+				"name": "customer-list-buy",
+				"path": "pages/customer-list-buy/customer-list-buy"
+			},
+			{
+				"name": "message",
+				"path": "pages/message/message"
+			}
+		]
 	}
 }

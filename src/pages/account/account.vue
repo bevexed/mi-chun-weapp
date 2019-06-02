@@ -16,6 +16,7 @@
 				width="360"
 			></my-button>
 			<my-button
+				:border="false"
 				@tap="toAccountDetail"
 				background-color="#fff"
 				color="#000"

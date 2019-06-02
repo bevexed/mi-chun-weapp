@@ -3,13 +3,13 @@
 		<button
 			:style="{
 			width: width/2 + 'px',
-			height: height/2 + 2 + 'px',
+			height: height/2  + 'px',
 			lineHeight: height/2 + 'px',
 			background: backgroundColor,
 			color: color,
 			margin:`${margin/2}px auto`,
 		}"
-			class="['button',{'border':border}]">{{title}}
+			:class="['button',{'border':border}]">{{title}}
 		</button>
 	</view>
 </template>
@@ -54,6 +54,8 @@
 
 <style lang="scss" scoped>
 	.button {
+		padding: 0;
+		text-align: center;
 		background: #000;
 		color: #fff;
 		font-size: upx(24);

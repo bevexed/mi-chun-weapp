@@ -30,7 +30,8 @@
 							<span class="value">7</span>
 						</div>
 					</li>
-					<li>
+
+					<li @tap="toCustomerList">
 						<div class="icon">
 							<div></div>
 						</div>
@@ -55,7 +56,8 @@
 							<span class="value"></span>
 						</div>
 					</li>
-					<li>
+
+					<li @tap="toMessage">
 						<div class="icon">
 							<div></div>
 						</div>
@@ -86,6 +88,18 @@
 			toMyOrder(){
 				uni.navigateTo({
 					url:'/pages/my-order/my-order'
+				})
+			},
+
+			toCustomerList(){
+				uni.navigateTo({
+					url:'/pages/customer-list/customer-list'
+				})
+			},
+
+			toMessage(){
+				uni.navigateTo({
+					url:'/pages/message/message'
 				})
 			}
 		}
@@ -178,7 +192,7 @@
 						width: upx(12);
 						height: upx(12);
 						transform: rotate(45deg);
-						border-width: upx(1) upx(1) 0 0;
+						border-width: upx(2) upx(2) 0 0;
 						border-color: #999;
 						border-style: solid;
 						content: '';
