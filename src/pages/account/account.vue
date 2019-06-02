@@ -16,6 +16,7 @@
 				width="360"
 			></my-button>
 			<my-button
+				@tap="toAccountDetail"
 				background-color="#fff"
 				color="#000"
 				height="80"
@@ -39,6 +40,11 @@
 			toWithdraw(){
 				uni.navigateTo({
 					url:'/pages/withdraw/withdraw'
+				})
+			},
+			toAccountDetail(){
+				uni.navigateTo({
+					url:'/pages/account-detail/account-detail'
 				})
 			}
 		}

@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "提现"
 			}
+		},
+		{
+			"path": "pages/account-detail/account-detail",
+			"style": {
+				"navigationBarTitleText": "明细"
+			}
 		}
 	],
 	"tabBar": {
@@ -65,13 +71,16 @@
 		}
 	},
 	"condition": {
-		"current": 0,
+		"current": 2,
 		"list": [{
 			"name": "account",
 			"path": "pages/account/account"
 		},{
 			"name": "withdraw",
 			"path": "pages/withdraw/withdraw"
+		},{
+			"name": "account-detail",
+			"path": "pages/account-detail/account-detail"
 		}]
 	}
 }
