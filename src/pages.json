@@ -23,6 +23,12 @@
 			"style": {
 				"navigationBarTitleText": "账户"
 			}
+		},
+		{
+			"path": "pages/withdraw/withdraw",
+			"style": {
+				"navigationBarTitleText": "提现"
+			}
 		}
 	],
 	"tabBar": {
@@ -53,13 +59,19 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "迷纯PHRE",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#f2f2f2"
+		"backgroundColor": "#f2f2f2",
+		"page": {
+			"backgroundColor": "#f2f2f2"
+		}
 	},
 	"condition": {
 		"current": 0,
 		"list": [{
 			"name": "account",
 			"path": "pages/account/account"
+		},{
+			"name": "withdraw",
+			"path": "pages/withdraw/withdraw"
 		}]
 	}
 }

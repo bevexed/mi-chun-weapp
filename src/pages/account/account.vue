@@ -10,17 +10,18 @@
 
 		<footer>
 			<my-button
-				title="提现"
+				@tap="toWithdraw"
 				height="80"
+				title="提现"
 				width="360"
 			></my-button>
 			<my-button
-				title="明细"
-				height="80"
-				width="360"
 				background-color="#fff"
 				color="#000"
+				height="80"
 				margin="40"
+				title="明细"
+				width="360"
 			></my-button>
 		</footer>
 	</div>
@@ -33,6 +34,13 @@
 	export default Vue.extend({
 		components: {
 			MyButton
+		},
+		methods: {
+			toWithdraw(){
+				uni.navigateTo({
+					url:'/pages/withdraw/withdraw'
+				})
+			}
 		}
 	});
 </script>
