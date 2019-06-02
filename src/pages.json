@@ -30,15 +30,15 @@
 				"text": "收益"
 			},
 			{
-				"pagePath": "pages/my/my",
+				"pagePath": "pages/shop/shop",
 				"iconPath": "static/shop.png",
-				"selectedIconPath": "static/shop.png",
+				"selectedIconPath": "static/shop-s.png",
 				"text": "商城"
 			},
 			{
-				"pagePath": "pages/shop/shop",
+				"pagePath": "pages/my/my",
 				"iconPath": "static/my.png",
-				"selectedIconPath": "static/my.png",
+				"selectedIconPath": "static/my-s.png",
 				"text": "我的"
 			}
 		]
@@ -47,6 +47,13 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "迷纯PHRE",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#f2f2f2"
+	},
+	"condition": {
+		"current": 0,
+		"list": [{
+			"name": "shop",
+			"path": "pages/shop/shop"
+		}]
 	}
 }

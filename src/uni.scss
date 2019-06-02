@@ -34,8 +34,9 @@
 }
 
 /* 字体 */
-$font-size-24: upx(24);
 $font-size-20: upx(20);
+$font-size-24: upx(24);
+$font-size-28: upx(28);
 $font-size-68: upx(68);
 
 @mixin bold($size) {
