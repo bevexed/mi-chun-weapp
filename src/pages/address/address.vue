@@ -6,7 +6,7 @@
 		</div>
 
 		<ul class="address-list">
-			<li>
+			<li v-for="i in [1,2,3]" :key="i">
 				<section class="left">
 					<header>
 						吴彦祖 17758021312
@@ -16,24 +16,12 @@
 					</footer>
 				</section>
 
-				<img alt="" class="editor" src="../../static/editor.jpg">
+				<img @tap="toEdit" alt="" class="editor" src="../../static/editor.jpg">
 			</li>
 
-			<li>
-				<section class="left">
-					<header>
-						吴彦祖 17758021312
-					</header>
-					<footer>
-						收货地址：浙江省杭州市滨江区网商路399号网易二期
-					</footer>
-				</section>
-
-				<img alt="" class="editor" src="../../static/editor.jpg">
-			</li>
 		</ul>
 
-		<my-button height="100" title="新增收货地址" width="710" margin="80" @tap="toAddAddress"></my-button>
+		<my-button @tap="toAddAddress" height="100" margin="80" title="新增收货地址" width="710"></my-button>
 	</div>
 </template>
 
@@ -48,12 +36,18 @@
 		data() {
 			return {}
 		},
-		methods:{
-			toAddAddress(){
+		methods: {
+			toAddAddress() {
 				uni.navigateTo({
-					url:"/pages/add-address/add-address"
+					url: "/pages/add-address/add-address"
 				})
-			}
+			},
+			toEdit() {
+				uni.navigateTo({
+					url: "/pages/edit-address/edit-address"
+				})
+			},
+
 		}
 	});
 </script>

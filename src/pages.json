@@ -77,6 +77,12 @@
 			"style": {
 				"navigationBarTitleText": "新增地址"
 			}
+		},
+		{
+			"path": "pages/edit-address/edit-address",
+			"style": {
+				"navigationBarTitleText": "编辑地址"
+			}
 		}
 	],
 	"tabBar": {
@@ -154,6 +160,10 @@
 			{
 				"name": "add-address",
 				"path": "pages/add-address/add-address"
+			},
+			{
+				"name": "edit-address",
+				"path": "pages/edit-address/edit-address"
 			}
 		]
 	}

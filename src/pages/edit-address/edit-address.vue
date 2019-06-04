@@ -1,10 +1,5 @@
 <template>
 	<div class="address">
-		<div class="get-address">
-			<uni-icon color="#02D314" size="26" type="weixin"></uni-icon>
-			<span>获取微信收货地址</span>
-		</div>
-
 		<ul class="address-list">
 			<li>
 				<header>
@@ -46,6 +41,7 @@
 		</ul>
 
 		<my-button @tap="saveAddress" height="100" margin="80" title="保存并使用" width="710"></my-button>
+		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" height="100" margin="-60" title="删除收货地址" width="710"></my-button>
 	</div>
 </template>
 
@@ -53,7 +49,6 @@
 	import Vue from 'vue'
 	import {uniIcon} from "@dcloudio/uni-ui"
 	import MyButton from '../../components/button/button.vue'
-
 
 	export default Vue.extend({
 		components: {uniIcon, MyButton},
