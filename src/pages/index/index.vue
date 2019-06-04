@@ -97,13 +97,14 @@
 				</header>
 
 				<section class="detail bbt">
-					<div class="title">
-						佣金额度
-						<!--						<img alt="" src="">-->
-					</div>
+					<!--<div class="title">佣金额度</div>-->
 
 					<div class="tr tr-title">
-						<div></div>
+						<div>
+							<div class="table-title">
+								佣金额度
+							</div>
+						</div>
 						<div>初始额度</div>
 						<div></div>
 						<div>绑定加成额度</div>
@@ -133,10 +134,12 @@
 
 
 				<section class="detail">
-					<div class="title">消费返利额度 </div>
+					<!--					<div class="title">消费返利额度 </div>-->
 
 					<div class="tr tr-title">
-						<div></div>
+						<div>
+							<div class="table-title">消费者返利额度</div>
+						</div>
 						<div>初始额度</div>
 						<div></div>
 						<div>绑定加成额度</div>
@@ -148,18 +151,18 @@
 						<div>雾化器</div>
 						<div>25%</div>
 						<div>+</div>
-						<div>7.5%</div>
+						<div>15%</div>
 						<div>=</div>
-						<div>32.5</div>
+						<div>40%</div>
 					</div>
 
 					<div class="tr">
 						<div>雾化弹</div>
-						<div>25%</div>
+						<div>7%</div>
 						<div>+</div>
-						<div>7.5%</div>
+						<div>8%</div>
 						<div>=</div>
-						<div>32.5</div>
+						<div>15%</div>
 					</div>
 				</section>
 			</section>
@@ -202,9 +205,11 @@
 
 <style lang="scss" scoped>
 	@import "../../uni";
+
 	.content {
 		width: upx(750);
 		overflow-x: hidden;
+
 		.board {
 			background: $theme-background-color;
 			color: #fff;
@@ -315,7 +320,7 @@
 			text-align: left;
 			box-shadow: upx(4) upx(4) upx(20) 0 rgba(0, 0, 0, 0.25);
 
-			header{
+			header {
 				border-bottom: 1px solid #eeeeee;
 			}
 
@@ -344,7 +349,7 @@
 				}
 			}
 
-			footer{
+			footer {
 				padding-top: upx(18);
 				font-size: $font-size-20;
 			}
@@ -410,17 +415,21 @@
 			}
 
 			.detail {
-				height: upx(230);
+				/*height: upx(230);*/
+				padding: upx(20) 0;
 
 				&.bbt {
 					@include bbt;
 				}
 
-				.title {
+				.table-title {
 					@include bold(32);
+					display: inline;
+					color: #fff !important;
+					background: #000;
+					border-radius: upx(10);
+					padding: upx(6) upx(10);
 					text-align: center;
-					margin-top: upx(32);
-					margin-bottom: upx(20);
 				}
 
 
@@ -436,13 +445,15 @@
 					}
 
 					&-title {
-						@include bold(20)
+						@include bold(20);
+						font-weight: 400;
+						color: #333;
 					}
 
 					:nth-child(1) {
 						@include bold(20);
-						width: upx(140);
-						text-align: center;
+						width: upx(180);
+						text-align: left;
 					}
 
 					:nth-child(2) {

@@ -5,12 +5,17 @@
 	export default Vue.extend({
 		mpType: 'app',
 		onLaunch() {
-			console.log('App Launch')
-			reqGetLogin({code: '1123'}).then(
-				res => {
-					console.log(res);
+			uni.login({
+				success(res) {
+					console.log('login', res);
+					reqGetLogin({code: '1123'}).then(
+						result => {
+							console.log('userData', result);
+						}
+					)
 				}
-			)
+			})
+
 		},
 		onShow() {
 			console.log('App Show')
