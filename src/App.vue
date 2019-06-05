@@ -1,13 +1,11 @@
 <script lang="ts">
 	import Vue from 'vue';
 	import {mapActions} from 'vuex'
-	import {login} from "@/store/user/actions";
 
 	export default Vue.extend({
 		mpType: 'app',
 		onLaunch() {
 			console.log(this.$store.state.User);
-			this.aaa();
 			// #ifndef H5
 			this.login()
 			// #endif
@@ -20,7 +18,7 @@
 			console.log('App Hide')
 		},
 		methods: {
-			...mapActions('User',['user_login','aaa'])
+			...mapActions('User',['login','aaa'])
 		},
 	});
 </script>

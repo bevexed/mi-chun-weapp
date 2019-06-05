@@ -3,7 +3,7 @@ import {USER_LOGIN} from '../mutation-types';
 import {reqGetLogin} from "@/api";
 
 export default {
-	[USER_LOGIN](commit: any, data: any) {
+	login(commit: any, data: any) {
 		uni.login({
 			success(res) {
 				console.log('login', res);
@@ -19,7 +19,4 @@ export default {
 		});
 	},
 
-	aaa(){
-		console.log('aaa');
-	}
 };

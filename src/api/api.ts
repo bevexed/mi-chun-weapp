@@ -15,7 +15,7 @@ export const ajax: Ajax = (url, data, loading = false, method = "GET") => {
 			data,
 			method,
 			success(res: any): void {
-				resolve(res)
+				resolve(res.data)
 			},
 			fail(err: any): void {
 				reject(err)

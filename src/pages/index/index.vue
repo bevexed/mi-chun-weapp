@@ -35,7 +35,7 @@
 						:scrollable="true"
 						:show-icon="true"
 						:single="true"
-						speed="100"
+						:speed="100"
 						text="10亿资金池消费佣金活动由主办方【迷纯雾化器】提供一款纯正的减害">
 					</uni-notice-bar>
 				</section>
@@ -113,7 +113,7 @@
 					</div>
 
 					<div class="tr">
-						<div>雾化器</div>
+						<div class="row-title">雾化器</div>
 						<div>25%</div>
 						<div>+</div>
 						<div>7.5%</div>
@@ -122,7 +122,7 @@
 					</div>
 
 					<div class="tr">
-						<div>雾化弹</div>
+						<div class="row-title">雾化弹</div>
 						<div>25%</div>
 						<div>+</div>
 						<div>7.5%</div>
@@ -148,7 +148,7 @@
 					</div>
 
 					<div class="tr">
-						<div>雾化器</div>
+						<div class="row-title"> 雾化器</div>
 						<div>25%</div>
 						<div>+</div>
 						<div>15%</div>
@@ -157,7 +157,7 @@
 					</div>
 
 					<div class="tr">
-						<div>雾化弹</div>
+						<div class="row-title">雾化弹</div>
 						<div>7%</div>
 						<div>+</div>
 						<div>8%</div>
@@ -442,6 +442,10 @@
 
 					> div {
 						margin-bottom: upx(16);
+					}
+
+					.row-title{
+						text-indent: .5em;
 					}
 
 					&-title {
