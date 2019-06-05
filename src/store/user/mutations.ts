@@ -1,7 +1,7 @@
-import {USER} from '../mutation-types';
+import {USER_LOGIN} from '../mutation-types';
 
 export default {
-	[USER](state: any, {data}: any) {
+	[USER_LOGIN](state: any, {data}: any) {
 		state.data = data;
 	},
 };

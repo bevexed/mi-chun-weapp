@@ -1,21 +1,15 @@
 <script lang="ts">
-	import {reqGetLogin} from "@/api";
 	import Vue from 'vue';
+	import {mapActions} from 'vuex'
+	import {login} from "@/store/user/actions";
+
 	export default Vue.extend({
 		mpType: 'app',
 		onLaunch() {
 			console.log(this.$store.state.User);
+			this.aaa();
 			// #ifndef H5
-			uni.login({
-				success(res) {
-					console.log('login', res);
-					reqGetLogin({code: '1123'}).then(
-						result => {
-							console.log('userData', result);
-						}
-					)
-				}
-			})
+			this.login()
 			// #endif
 
 		},
@@ -24,7 +18,10 @@
 		},
 		onHide() {
 			console.log('App Hide')
-		}
+		},
+		methods: {
+			...mapActions('User',['user_login','aaa'])
+		},
 	});
 </script>
 
