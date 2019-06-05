@@ -21,7 +21,7 @@
 
 		</ul>
 
-		<my-button @tap="toAddAddress" height="100" margin="80" title="新增收货地址" width="710"></my-button>
+		<my-button @tap="toAddAddress" :height="100" :margin="80" title="新增收货地址" :width="710"></my-button>
 	</div>
 </template>
 

@@ -32,9 +32,9 @@
 					<uni-notice-bar
 						background-color="#ffffff"
 						color="#666"
-						scrollable="true"
-						show-icon="true"
-						single="true"
+						:scrollable="true"
+						:show-icon="true"
+						:single="true"
 						speed="100"
 						text="10亿资金池消费佣金活动由主办方【迷纯雾化器】提供一款纯正的减害">
 					</uni-notice-bar>
@@ -88,7 +88,7 @@
 
 
 					<div class="right">
-						<MyButton height="56" title="解绑" width="160"></MyButton>
+						<my-button :height="56" title="解绑" :width="160"></my-button>
 						<div>
 							活跃倒计时：<span>0 </span> 天
 						</div>

@@ -18,7 +18,7 @@
 	import Vue from 'vue'
 
 	export default Vue.extend({
-		name: "button",
+		name: "my-button",
 		props: {
 			title: {
 				type: String,

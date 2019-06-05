@@ -40,8 +40,8 @@
 
 		</ul>
 
-		<my-button @tap="saveAddress" height="100" margin="80" title="保存并使用" width="710"></my-button>
-		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" height="100" margin="-60" title="删除收货地址" width="710"></my-button>
+		<my-button @tap="saveAddress" :height="100" :margin="80" title="保存并使用" :width="710"></my-button>
+		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" :height="100" :margin="-60" title="删除收货地址" :width="710"></my-button>
 	</div>
 </template>
 

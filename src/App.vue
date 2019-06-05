@@ -1,10 +1,11 @@
 <script lang="ts">
 	import {reqGetLogin} from "@/api";
 	import Vue from 'vue';
-
 	export default Vue.extend({
 		mpType: 'app',
 		onLaunch() {
+			console.log(this.$store.state.User);
+			// #ifndef H5
 			uni.login({
 				success(res) {
 					console.log('login', res);
@@ -15,6 +16,7 @@
 					)
 				}
 			})
+			// #endif
 
 		},
 		onShow() {
