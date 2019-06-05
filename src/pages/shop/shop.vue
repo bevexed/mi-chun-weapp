@@ -1,8 +1,8 @@
 <template>
-<div>
-	<image src="../../static/dev/1.jpg"></image>
-	<image src="../../static/dev/1.jpg"></image>
-</div>
+	<div>
+		<image @tap="toGoodDetail" src="../../static/dev/1.jpg"></image>
+		<image src="../../static/dev/1.jpg"></image>
+	</div>
 </template>
 
 <script lang="ts">
@@ -15,14 +15,22 @@
 		},
 		onLoad() {
 			console.log('shop');
+		},
+		methods: {
+			toGoodDetail() {
+				uni.navigateTo({
+					url:'/pages/good-detail/good-detail'
+				})
+			}
 		}
-    })
+	})
 </script>
 
 <style lang="scss" scoped>
-	div{
+	div {
 		text-align: center;
 	}
+
 	image {
 		width: upx(710);
 		height: upx(720);

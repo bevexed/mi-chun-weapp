@@ -6,10 +6,10 @@
 		mpType: 'app',
 		onLaunch() {
 			console.log(this.$store.state.User);
+			this.getProductInfo({data: 1}).then();
 			// #ifndef H5
-			this.login()
+			this.login({data: 1})
 			// #endif
-
 		},
 		onShow() {
 			console.log('App Show')
@@ -18,7 +18,8 @@
 			console.log('App Hide')
 		},
 		methods: {
-			...mapActions('User',['login','aaa'])
+			...mapActions('User', ['login']),
+			...mapActions('Product', ['getProductInfo']),
 		},
 	});
 </script>

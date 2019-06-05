@@ -83,6 +83,12 @@
 			"style": {
 				"navigationBarTitleText": "编辑地址"
 			}
+		},
+		{
+			"path": "pages/good-detail/good-detail",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
 		}
 	],
 	"tabBar": {
@@ -161,6 +167,10 @@
 			{
 				"name": "edit-address",
 				"path": "pages/edit-address/edit-address"
+			},
+			{
+				"name": "good-detail",
+				"path": "pages/good-detail/good-detail"
 			}
 		]
 	}
