@@ -1,6 +1,6 @@
 <template>
 	<div class="submit-order">
-		<header class="">
+		<header class="" @tap="toSelectAddress">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
 				<div class="name">吴彦祖 <span class="phone">13111114444</span></div>
@@ -55,6 +55,13 @@
 		name: "submit-order",
 		components: {
 			myButton
+		},
+		methods:{
+			toSelectAddress(){
+				uni.navigateTo({
+					url:'/pages/select-address/select-address'
+				})
+			}
 		}
 	})
 </script>

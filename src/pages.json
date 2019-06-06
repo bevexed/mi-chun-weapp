@@ -95,6 +95,12 @@
 			"style": {
 				"navigationBarTitleText": "提交订单"
 			}
+		},
+		{
+			"path": "pages/select-address/select-address",
+			"style": {
+				"navigationBarTitleText": "选择地址"
+			}
 		}
 	],
 	"tabBar": {
@@ -179,8 +185,8 @@
 				"path": "pages/good-detail/good-detail"
 			},
 			{
-				"name": "submit-order",
-				"path": "pages/submit-order/submit-order"
+				"name": "select-address",
+				"path": "pages/select-address/select-address"
 			}
 		]
 	}
