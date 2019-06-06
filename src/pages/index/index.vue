@@ -8,7 +8,7 @@
 			</header>
 
 			<footer>
-				<section class="left">
+				<section class="left" @tap="toTodayCome">
 					<div class="title">今日收益（元）</div>
 					<div>480.00</div>
 					<div class="bottom-title">昨日收益：780.00</div>
@@ -210,6 +210,11 @@
 				toAllCome(){
 					uni.navigateTo({
 						url:'/pages/all-come/all-come'
+					})
+				},
+				toTodayCome(){
+					uni.navigateTo({
+						url:'/pages/today-come/today-come'
 					})
 				}
 			}

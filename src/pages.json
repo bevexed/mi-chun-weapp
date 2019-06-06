@@ -107,6 +107,12 @@
 			"style": {
 				"navigationBarTitleText": "累计收益"
 			}
+		},
+		{
+			"path": "pages/today-come/today-come",
+			"style": {
+				"navigationBarTitleText": "今日收益"
+			}
 		}
 	],
 	"tabBar": {
