@@ -1,6 +1,6 @@
 <template>
 	<div class="submit-order">
-		<header class="" @tap="toSelectAddress">
+		<header @tap="toSelectAddress" class="">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
 				<div class="name">吴彦祖 <span class="phone">13111114444</span></div>
@@ -42,8 +42,33 @@
 		<aside>
 			<div class="title">实付款：</div>
 			<div class="red">￥39.00</div>
-			<my-button :width="200" :height="70" title="付款"></my-button>
+			<my-button :height="70" :width="200" @tap="popShow=true" title="付款"></my-button>
 		</aside>
+
+
+		<section :class="['pop-warp',  {'pop-warp-open':popShow}]" @tap.stop="popShow = false">
+			<section :class="['pop',  {'pop-open':popShow}]" @tap.stop>
+				<header>
+					<h1>选择支付方式</h1>
+				</header>
+
+				<ul>
+					<li>
+						<img alt="" src="../../static/last.png">
+						<div>余额支付</div>
+					</li>
+					<li>
+						<img alt="" src="../../static/cute.png">
+						<div>微信钱包</div>
+					</li>
+				</ul>
+
+				<my-button :title="'支付￥45.00'" :margin="60"></my-button>
+
+
+			</section>
+		</section>
+
 	</div>
 </template>
 
@@ -56,10 +81,15 @@
 		components: {
 			myButton
 		},
-		methods:{
-			toSelectAddress(){
+		data() {
+			return {
+				popShow: true
+			}
+		},
+		methods: {
+			toSelectAddress() {
 				uni.navigateTo({
-					url:'/pages/select-address/select-address'
+					url: '/pages/select-address/select-address'
 				})
 			}
 		}
@@ -197,7 +227,7 @@
 			bottom: 0;
 			background: #fff;
 
-			.title{
+			.title {
 				@include bold(24);
 				color: #333;
 			}
@@ -209,6 +239,84 @@
 			}
 
 
+		}
+
+		.pop-warp {
+
+			z-index: 9;
+			position: absolute;
+			top: 0;
+
+			width: 100vw;
+			height: 100vh;
+
+			background: rgba(0, 0, 0, .3);
+
+			max-height: 0;
+			transition: all 1.6s;
+
+			&-open {
+				overflow: visible;
+				max-height: upx(10000);
+			}
+
+			.pop {
+				box-sizing: border-box;
+				position: fixed;
+				bottom: 0;
+
+				width: 100vw;
+
+				border-radius: upx(16) upx(16) 0 0;
+
+				background: #fff;
+
+				max-height: 0;
+				overflow: hidden;
+
+				transition: all 1.5s;
+
+				&-open {
+					overflow: visible;
+					max-height: upx(10000);
+				}
+			}
+
+			header {
+				margin: 0;
+				@include bold(32);
+				display: flex;
+				justify-content: center;
+				@include bbt;
+
+				h1 {
+					text-align: center;
+				}
+			}
+
+			ul {
+				padding: 0 upx(40);
+				margin-bottom: upx(300);
+				@include bbt;
+
+				li {
+					display: flex;
+					align-items: center;
+					padding: upx(40) 0;
+					@include bold(28);
+					@include bbt;
+
+					img {
+						width: upx(40);
+						height: upx(40);
+						margin-right: upx(20);
+					}
+
+					div {
+						flex: 1;
+					}
+				}
+			}
 		}
 	}
 </style>
