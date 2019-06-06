@@ -8,13 +8,13 @@
 			</header>
 
 			<footer>
-				<section class="left" @tap="toTodayCome">
+				<section @tap="toTodayCome" class="left">
 					<div class="title">今日收益（元）</div>
 					<div>480.00</div>
 					<div class="bottom-title">昨日收益：780.00</div>
 				</section>
 
-				<section class="left">
+				<section @tap="toCustomerListType" class="left">
 					<div class="title">累计客户（人）</div>
 					<div>48</div>
 					<div class="bottom-title">今日新增:30</div>
@@ -182,7 +182,6 @@
 		</div>
 
 
-
 	</view>
 </template>
 
@@ -207,14 +206,19 @@
 				return {}
 			},
 			methods: {
-				toAllCome(){
+				toAllCome() {
 					uni.navigateTo({
-						url:'/pages/all-come/all-come'
+						url: '/pages/all-come/all-come'
 					})
 				},
-				toTodayCome(){
+				toTodayCome() {
 					uni.navigateTo({
-						url:'/pages/today-come/today-come'
+						url: '/pages/today-come/today-come'
+					})
+				},
+				toCustomerListType() {
+					uni.navigateTo({
+						url: '/pages/customer-list-type/customer-list-type'
 					})
 				}
 			}

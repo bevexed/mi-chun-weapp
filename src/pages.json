@@ -49,6 +49,12 @@
 			}
 		},
 		{
+			"path": "pages/customer-list-type/customer-list-type",
+			"style": {
+				"navigationBarTitleText": "客户列表"
+			}
+		},
+		{
 			"path": "pages/customer-list-buy/customer-list-buy",
 			"style": {
 				"navigationBarTitleText": "客户已购买商品"
