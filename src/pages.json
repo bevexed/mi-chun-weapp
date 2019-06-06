@@ -101,6 +101,12 @@
 			"style": {
 				"navigationBarTitleText": "选择地址"
 			}
+		},
+		{
+			"path": "pages/all-come/all-come",
+			"style": {
+				"navigationBarTitleText": "累计收益"
+			}
 		}
 	],
 	"tabBar": {

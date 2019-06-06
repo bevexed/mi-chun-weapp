@@ -50,7 +50,7 @@
 				<section class="num">
 					<div class="title">购买数量</div>
 					<div class="red">限购1件</div>
-					<uni-number-box :max="1" :min="1" @change="handleNum"></uni-number-box>
+					<uni-number-box :max="99999" :min="1" @change="handleNum"></uni-number-box>
 				</section>
 
 				<section class="buy-now" @tap="toSubmitOrder">

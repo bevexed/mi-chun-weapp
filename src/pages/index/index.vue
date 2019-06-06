@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<section class="board">
-			<header>
+			<header @tap="toAllCome">
 				<div class="title">累计收益（元）</div>
 				<div class="title-money">1280.00</div>
 				<div class="title">待结算：360.00</div>
@@ -181,6 +181,8 @@
 			></my-button>
 		</div>
 
+
+
 	</view>
 </template>
 
@@ -193,18 +195,24 @@
 	import {uniNoticeBar} from "@dcloudio/uni-ui"
 
 	export default Vue.extend({
-			data() {
-				return {}
-			},
 			components: {
-				'pie-chart': PieChart,
+				PieChart,
 				uniNoticeBar,
 				MyButton
 			},
 			onLoad() {
 
 			},
-			methods: {}
+			data() {
+				return {}
+			},
+			methods: {
+				toAllCome(){
+					uni.navigateTo({
+						url:'/pages/all-come/all-come'
+					})
+				}
+			}
 		}
 	);
 </script>
