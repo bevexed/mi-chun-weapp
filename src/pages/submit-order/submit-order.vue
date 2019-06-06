@@ -1,6 +1,6 @@
 <template>
 	<div class="submit-order">
-		<header @tap="toSelectAddress" class="">
+		<header @tap="toSelectAddress" class="add">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
 				<div class="name">吴彦祖 <span class="phone">13111114444</span></div>
@@ -48,7 +48,7 @@
 
 		<section :class="['pop-warp',  {'pop-warp-open':popShow}]" @tap.stop="popShow = false">
 			<section :class="['pop',  {'pop-open':popShow}]" @tap.stop>
-				<header>
+				<header class="title">
 					<h1>选择支付方式</h1>
 				</header>
 
@@ -63,7 +63,7 @@
 					</li>
 				</ul>
 
-				<my-button :title="'支付￥45.00'" :margin="60"></my-button>
+				<my-button :margin="60" :title="'支付￥45.00'"></my-button>
 
 
 			</section>
@@ -83,7 +83,7 @@
 		},
 		data() {
 			return {
-				popShow: true
+				popShow: false
 			}
 		},
 		methods: {
@@ -100,7 +100,7 @@
 	@import "../../uni";
 
 	.submit-order {
-		header {
+		.add {
 			display: flex;
 			align-items: center;
 			box-sizing: border-box;
@@ -253,7 +253,7 @@
 			background: rgba(0, 0, 0, .3);
 
 			max-height: 0;
-			transition: all 1.6s;
+			transition: all .6s ease;
 
 			&-open {
 				overflow: visible;
@@ -274,7 +274,7 @@
 				max-height: 0;
 				overflow: hidden;
 
-				transition: all 1.5s;
+				transition: all .5s ease;
 
 				&-open {
 					overflow: visible;
@@ -282,7 +282,9 @@
 				}
 			}
 
-			header {
+			header.title {
+				padding: upx(40) 0;
+				height: 100%;
 				margin: 0;
 				@include bold(32);
 				display: flex;
@@ -299,12 +301,17 @@
 				margin-bottom: upx(300);
 				@include bbt;
 
+				:last-child {
+					border: none !important;
+				}
+
 				li {
 					display: flex;
 					align-items: center;
 					padding: upx(40) 0;
 					@include bold(28);
 					@include bbt;
+
 
 					img {
 						width: upx(40);

@@ -30,12 +30,12 @@
 				<div class="chart-title">十亿消费佣金池</div>
 				<section class="notice">
 					<uni-notice-bar
-						background-color="#ffffff"
-						color="#666"
 						:scrollable="true"
 						:show-icon="true"
 						:single="true"
 						:speed="100"
+						background-color="#ffffff"
+						color="#666"
 						text="10亿资金池消费佣金活动由主办方【迷纯雾化器】提供一款纯正的减害">
 					</uni-notice-bar>
 				</section>
@@ -72,7 +72,13 @@
 
 
 			<section class="pattern">
-				<header>
+				<header class="no-way" v-if="true">
+					<my-button :height="56" :margin="20" :width="180" title="去绑定"></my-button>
+					<div>可选择绑定管理员获得无惩罚的佣金加成</div>
+				</header>
+
+
+				<header v-else>
 					<div class="left">
 						<div>
 							<span class="label">	合伙人：</span>
@@ -88,7 +94,7 @@
 
 
 					<div class="right">
-						<my-button :height="56" title="解绑" :width="160"></my-button>
+						<my-button :height="56" :width="160" title="解绑"></my-button>
 						<div>
 							活跃倒计时：<span>0 </span> 天
 						</div>
@@ -444,7 +450,7 @@
 						margin-bottom: upx(16);
 					}
 
-					.row-title{
+					.row-title {
 						text-indent: .5em;
 					}
 
@@ -488,6 +494,15 @@
 			}
 		}
 
+
+		header.no-way {
+			margin-top: upx(-20);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+			font-size: upx(20);
+		}
 
 	}
 
