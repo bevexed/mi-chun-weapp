@@ -8,7 +8,7 @@
 		</footer>
 
 		<section :class="['pop-warp',  {'pop-warp-open':popShow}]" @tap.stop="popShow = false">
-			<section :class="['pop',  {'pop-open':popShow}]"  @tap.stop="popShow">
+			<section :class="['pop',  {'pop-open':popShow}]"  @tap.stop>
 				<header>
 					<img alt="" mode="widthFix" src="../../static/dev/1.jpg">
 					<div>
@@ -53,7 +53,7 @@
 					<uni-number-box :max="1" :min="1" @change="handleNum"></uni-number-box>
 				</section>
 
-				<section class="buy-now" @tap="popShow = false">
+				<section class="buy-now" @tap="toSubmitOrder">
 					立即购买
 				</section>
 
@@ -93,6 +93,15 @@
 			},
 			handleNum(e: MouseEvent) {
 				console.log(e);
+			},
+
+
+			toSubmitOrder(){
+				this.popShow = false;
+
+				uni.navigateTo({
+					url:'/pages/submit-order/submit-order'
+				})
 			}
 		}
 	})

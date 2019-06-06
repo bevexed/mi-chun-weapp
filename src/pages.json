@@ -89,6 +89,12 @@
 			"style": {
 				"navigationBarTitleText": "商品详情"
 			}
+		},
+		{
+			"path": "pages/submit-order/submit-order",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
 		}
 	],
 	"tabBar": {
@@ -171,6 +177,10 @@
 			{
 				"name": "good-detail",
 				"path": "pages/good-detail/good-detail"
+			},
+			{
+				"name": "submit-order",
+				"path": "pages/submit-order/submit-order"
 			}
 		]
 	}
