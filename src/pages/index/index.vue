@@ -186,9 +186,9 @@
 </template>
 
 <script lang="ts">
-	// @ts-nocheck
 	import Vue from 'vue';
 	import PieChart from './PieChart.vue'
+	import {reqInfo} from "@/api/home";
 
 	import MyButton from '@/components/button/button.vue'
 	import {uniNoticeBar} from "@dcloudio/uni-ui"
@@ -200,12 +200,17 @@
 				MyButton
 			},
 			onLoad() {
-
+				this.getInfo();
 			},
 			data() {
 				return {}
 			},
 			methods: {
+				async getInfo(){
+					let res = await reqInfo();
+					console.log(res);
+				},
+
 				toAllCome() {
 					uni.navigateTo({
 						url: '/pages/all-come/all-come'

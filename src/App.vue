@@ -1,14 +1,12 @@
 <script lang="ts">
 	import Vue from 'vue';
-	import {mapActions} from 'vuex'
+	import { mapActions } from 'vuex'
 
 	export default Vue.extend({
 		mpType: 'app',
 		onLaunch() {
-			console.log(this.$store.state.User);
-			this.getProductInfo({data: 1}).then();
 			// #ifndef H5
-			this.login({data: 1})
+			this.login({ data: 1 })
 			// #endif
 		},
 		onShow() {

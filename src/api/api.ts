@@ -15,10 +15,12 @@ export const ajax: Ajax = (url, data, loading = false, method = "GET") => {
 			data,
 			method,
 			success(res: any): void {
-				resolve(res.data)
+				resolve(res.data);
+				console.log('ajax-success',res.data);
 			},
 			fail(err: any): void {
 				reject(err)
+				console.log('ajax-error', err);
 			}
 		})
 	})
