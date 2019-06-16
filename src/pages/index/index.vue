@@ -3,21 +3,21 @@
 		<section class="board">
 			<header @tap="toAllCome">
 				<div class="title">累计收益（元）</div>
-				<div class="title-money">1280.00</div>
+				<div class="title-money">{{ info.profit}}</div>
 				<div class="title">待结算：360.00</div>
 			</header>
 
 			<footer>
 				<section @tap="toTodayCome" class="left">
 					<div class="title">今日收益（元）</div>
-					<div>480.00</div>
-					<div class="bottom-title">昨日收益：780.00</div>
+					<div>{{ info.profitToday }}</div>
+					<div class="bottom-title">昨日收益：{{ info.profitYesterday }}</div>
 				</section>
 
 				<section @tap="toCustomerListType" class="left">
 					<div class="title">累计客户（人）</div>
-					<div>48</div>
-					<div class="bottom-title">今日新增:30</div>
+					<div>{{ info.customerCount }}</div>
+					<div class="bottom-title">今日新增:{{ info.customerCountToday }}</div>
 				</section>
 			</footer>
 
@@ -27,7 +27,7 @@
 
 
 			<section class="card">
-				<div class="chart-title">十亿消费佣金池</div>
+				<div class="chart-title">{{ activity.title }}</div>
 				<section class="notice">
 					<uni-notice-bar
 						:scrollable="true"
@@ -36,35 +36,39 @@
 						:speed="100"
 						background-color="#ffffff"
 						color="#666"
-						text="10亿资金池消费佣金活动由主办方【迷纯雾化器】提供一款纯正的减害">
+						:text="activity.tips">
 					</uni-notice-bar>
 				</section>
 
-				<section :style="{background:`linear-gradient(90deg, #333 12%, #fff 0);`}"
+				<section :style="{background:`linear-gradient(90deg, #333 ${activity.progress * 100}%, #fff 0);`}"
 								 class="progress">
-					总进度：230W/0.023%
+					{{ activity.progressText }}
 				</section>
 
 				<section class="my-chart">
 
 					<section class="pie">
-						<pie-chart/>
+						<pie-chart 
+							:c="activity.consumeProgress"
+							:a="activity.consumeProgress" 
+							:d="activity.hardWareProgress"
+							:b="activity.hardWareProgress"/>
 					</section>
 
 					<section class="table">
 						<header>
 							<section class="list">
 								<div class="left first"></div>
-								<div class="content">Y1迷纯雾化器 57% = 130W</div>
+								<div class="content">{{ activity.consumeProgressText }}</div>
 							</section>
 							<section class="list">
 								<div class="left second"></div>
-								<div class="content">Y1迷纯雾化器 57% = 130W</div>
+								<div class="content">{{ activity.hardWareProgressText }}</div>
 							</section>
 						</header>
 
 						<footer>
-							消费佣金池只包含雾化器、雾化弹的份额
+							{{ activity.remark }}
 						</footer>
 					</section>
 				</section>
@@ -72,12 +76,12 @@
 
 
 			<section class="pattern">
-				<header class="no-way" v-if="true">
+				<header class="no-way" v-if="info.partnerDidBind === 0">
 					<my-button :height="56" :margin="20" :width="180" title="去绑定"></my-button>
 					<div>可选择绑定管理员获得无惩罚的佣金加成</div>
 				</header>
 
-
+					<!--todo:绑定，解绑弹窗-->
 				<header v-else>
 					<div class="left">
 						<div>
@@ -120,28 +124,26 @@
 
 					<div class="tr">
 						<div class="row-title">雾化器</div>
-						<div>25%</div>
+						<div>{{ info.hardwareCommissionRatioFlexed }}%</div>
 						<div>+</div>
-						<div>7.5%</div>
+						<div>{{ info.hardwareCommissionRatioRelatived }}%</div>
 						<div>=</div>
-						<div>32.5</div>
+						<div>{{ info.hardwareCommissionRatioFlexed + info.hardwareCommissionRatioRelatived }}%</div>
 					</div>
 
 					<div class="tr">
 						<div class="row-title">雾化弹</div>
-						<div>25%</div>
+						<div>{{ info.consumeCommissionRatioFlexed }}%</div>
 						<div>+</div>
-						<div>7.5%</div>
+						<div>{{ info.consumeCommissionRatioRelatived }}%</div>
 						<div>=</div>
-						<div>32.5</div>
+						<div>{{ info.consumeCommissionRatioFlexed + info.consumeCommissionRatioRelatived }}%</div>
 					</div>
 
 				</section>
 
 
 				<section class="detail">
-					<!--					<div class="title">消费返利额度 </div>-->
-
 					<div class="tr tr-title">
 						<div>
 							<div class="table-title">消费者返利额度</div>
@@ -155,20 +157,20 @@
 
 					<div class="tr">
 						<div class="row-title"> 雾化器</div>
-						<div>25%</div>
+						<div>{{ info.hardwareFanliRatioFlexed }}%</div>
 						<div>+</div>
-						<div>15%</div>
+						<div>{{ info.hardwareFanliRatioRelatived }}%</div>
 						<div>=</div>
-						<div>40%</div>
+						<div>{{ info.hardwareFanliRatioFlexed + info.hardwareFanliRatioRelatived }}%</div>
 					</div>
 
 					<div class="tr">
 						<div class="row-title">雾化弹</div>
-						<div>7%</div>
+						<div>{{ info.consumeFanliRatioFlexed }}%</div>
 						<div>+</div>
-						<div>8%</div>
+						<div>{{ info.consumeFanliRatioRelatived }}%</div>
 						<div>=</div>
-						<div>15%</div>
+						<div>{{ info.consumeFanliRatioFlexed + info.consumeFanliRatioRelatived}}%</div>
 					</div>
 				</section>
 			</section>
@@ -188,10 +190,10 @@
 <script lang="ts">
 	import Vue from 'vue';
 	import PieChart from './PieChart.vue'
-	import {reqInfo} from "@/api/home";
+	import { reqInfo } from "@/api/home";
 
 	import MyButton from '@/components/button/button.vue'
-	import {uniNoticeBar} from "@dcloudio/uni-ui"
+	import { uniNoticeBar } from "@dcloudio/uni-ui"
 
 	export default Vue.extend({
 			components: {
@@ -203,12 +205,18 @@
 				this.getInfo();
 			},
 			data() {
-				return {}
+				return {
+					info: {},
+					activity:{}
+				}
 			},
 			methods: {
-				async getInfo(){
+				async getInfo() {
 					let res = await reqInfo();
-					console.log(res);
+					if (res.code === 0) {
+						this.info = res.data;
+						this.activity = res.data.activity
+					}
 				},
 
 				toAllCome() {

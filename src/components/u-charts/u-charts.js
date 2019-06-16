@@ -55,7 +55,7 @@ var config = {
     fontSize: 13,
     //dataPointShape: ['diamond', 'circle', 'triangle', 'rect'],
 	dataPointShape: ['circle', 'circle', 'circle', 'circle'],//仿F2图例样式改为圆点
-    colors: ['#1890ff', '#2fc25b', '#facc14', '#f04864', '#8543e0', '#90ed7d'],
+    colors: ['#dddddd', '#000000', '#facc14', '#f04864', '#8543e0', '#90ed7d'],
     pieChartLinePadding: 15,
     pieChartTextPadding: 5,
     xAxisTextPadding: 3,

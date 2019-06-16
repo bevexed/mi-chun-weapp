@@ -22,6 +22,7 @@
 	let canvaPie: any = null;
 
 	export default Vue.extend({
+			props: ['a', 'b', 'c', 'd'],
 			data() {
 				return {
 					cWidth: 200,
@@ -40,23 +41,26 @@
 			},
 			methods: {
 				getServerData() {
-					uni.request({
-						url: 'https://www.easy-mock.com/mock/5cc586b64fc5576cba3d647b/uni-wx-charts/chartsdata2',
-						data: {},
-						success: function (res) {
-							//@ts-ignore
-							console.log(res.data.data)
-							let Pie = {series: []};
-							//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-							//@ts-ignore
+					// uni.request({
+					// 	url: 'https://www.easy-mock.com/mock/5cc586b64fc5576cba3d647b/uni-wx-charts/chartsdata2',
+					// 	data: {},
+					// 	success: function (res) {
+					// 		@ts-ignore
+					// console.log(res.data.data)
+					let Pie = { series: [] };
+					//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
 
-							Pie.series = res.data.data.Pie.series;
-							_self.showPie("canvasPie", Pie);
-						},
-						fail: () => {
-							_self.tips = "网络错误，小程序端请检查合法域名";
-						},
-					});
+					//@ts-ignore
+					Pie.series = [
+						{ name: this.c, data: this.a },
+						{ name: this.d, data: this.b }
+						];
+					_self.showPie("canvasPie", Pie);
+					// },
+					// fail: () => {
+					// 	_self.tips = "网络错误，小程序端请检查合法域名";
+					// },
+					// });
 				},
 				//@ts-ignore
 
@@ -87,7 +91,7 @@
 						//@ts-ignore
 
 						format: function (item) {
-							return item.name + ':' + item.data
+							return  item.data
 						}
 					});
 				},
