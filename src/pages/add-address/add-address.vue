@@ -11,7 +11,7 @@
 					<label for="name">
 						姓名
 					</label>
-					<input id="name" placeholder="收货人姓名" type="text">
+					<input id="name" v-model="userName" placeholder="收货人姓名" type="text">
 				</header>
 			</li>
 
@@ -20,18 +20,19 @@
 					<label for="phone">
 						电话
 					</label>
-					<input id="phone" placeholder="收货人手机号" type="text">
+					<input id="phone" type="number"  maxlength="11" v-model="phone" placeholder="收货人手机号">
 				</header>
 			</li>
 
-			<li>
-				<header>
-					<label for="address">
-						地区
-					</label>
-					<input id="address" placeholder="选择省市区" type="text">
-				</header>
-			</li>
+			<!--			<li>-->
+			<!--				<header>-->
+			<!--					<label for="address">-->
+			<!--						地区-->
+			<!--					</label>-->
+			<!--					<input id="address" placeholder="选择省市区" type="text">-->
+
+			<!--				</header>-->
+			<!--			</li>-->
 
 			<li>
 				<header>
@@ -39,33 +40,34 @@
 						详细地址
 					</label>
 				</header>
-				<textarea id="address-detail" placeholder="街道门牌、楼层房间号等信息" type="text"></textarea>
+				<textarea v-model="address" id="address-detail" placeholder="街道门牌、楼层房间号等信息" type="text"></textarea>
 			</li>
 
 
 		</ul>
 
-		<my-button @tap="saveAddress" :height="100" :margin="80" title="保存并使用" :width="710"></my-button>
+		<my-button @tap="getAddAddress({address,phone,userName})" :height="100" :margin="80" title="保存并使用"
+							 :width="710"></my-button>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue'
-	import {uniIcon} from "@dcloudio/uni-ui"
+	import { uniIcon } from "@dcloudio/uni-ui"
+
+	import { mapActions } from 'vuex';
 	import MyButton from '../../components/button/button.vue'
 
 
 	export default Vue.extend({
-		components: {uniIcon, MyButton},
+		components: { uniIcon, MyButton },
 		data() {
-			return {}
+			return {
+				address: '', userName: '', phone: ''
+			}
 		},
 		methods: {
-			saveAddress() {
-				uni.navigateBack({
-					delta: 1
-				})
-			}
+			...mapActions('Address', ['getAddAddress']),
 		}
 	});
 </script>

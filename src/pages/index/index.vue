@@ -33,7 +33,7 @@
 						:scrollable="true"
 						:show-icon="true"
 						:single="true"
-						:speed="100"
+						:speed="50"
 						background-color="#ffffff"
 						color="#666"
 						:text="activity.tips">
@@ -48,11 +48,11 @@
 				<section class="my-chart">
 
 					<section class="pie">
-						<pie-chart 
-							:c="activity.consumeProgress"
-							:a="activity.consumeProgress" 
-							:d="activity.hardWareProgress"
-							:b="activity.hardWareProgress"/>
+						<pie-chart
+							v-if="activity.consumeProgress"
+							:a="activity.consumeProgress"
+							:b="activity.hardWareProgress">
+						</pie-chart>
 					</section>
 
 					<section class="table">

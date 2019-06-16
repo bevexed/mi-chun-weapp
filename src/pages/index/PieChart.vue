@@ -22,7 +22,7 @@
 	let canvaPie: any = null;
 
 	export default Vue.extend({
-			props: ['a', 'b', 'c', 'd'],
+			props: ['a', 'b'],
 			data() {
 				return {
 					cWidth: 200,
@@ -52,8 +52,10 @@
 
 					//@ts-ignore
 					Pie.series = [
-						{ name: this.c, data: this.a },
-						{ name: this.d, data: this.b }
+						//@ts-ignore
+						{ name: this.a, data: this.a },
+						//@ts-ignore
+						{ name: this.b, data: this.b }
 						];
 					_self.showPie("canvasPie", Pie);
 					// },
