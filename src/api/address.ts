@@ -6,4 +6,6 @@ export interface Address {
 	phone: string
 }
 
-export const reqAddAddress = (data: Address) => ajax('/address/add', data, true, 'POST');
+export const reqAddAddress = (data: Address) => ajax('/address/add', data, 'POST');
+
+export const reqAddress = () => ajax('/address/list', {}, 'GET');

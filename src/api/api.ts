@@ -1,42 +1,73 @@
+import { SHOW_MSG } from "@/utils";
+import logger from "vuex/dist/logger";
+
 interface Ajax {
 	(url: string,
 	 data: object,
+	 method?: 'GET' | 'POST',
 	 loading?: boolean,
-	 method?: 'GET' | 'POST'
 	): Promise<any>
 }
 
 export const baseUrl = 'https://phrevape.com/api';
 
-let header = {
-	'Content-Type': 'application/x-www-form-urlencoded',
-	'token': ''
+
+const header = () => {
+	let header = {
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'token': ''
+	};
+
+	return new Promise(resolve => {
+		uni.getStorage({
+			key: 'token',
+			success(res) {
+				header = { ...header, 'token': res.data };
+				resolve(header)
+			},
+			fail() {
+				resolve(header)
+			}
+		});
+	})
 };
 
-uni.getStorage({
-	key: 'token',
-	success(res) {
-		console.log(res);
-	},
-	fail() {
-		header = { ...header, 'token': '97828eb614ca4419a5dd4d332ffb1e3e' };
-	}
-})
+export const ajax: Ajax = async (url, data, method = "GET", loading = true) => {
+	let headerDate = await header();
 
-export const ajax: Ajax = (url, data, loading = false, method = "GET") => {
+	if (loading) {
+		uni.showLoading({
+			title: 'loading。。。',
+			mask: true,
+		})
+	}
+
 	return new Promise((resolve, reject) => {
 		uni.request({
 			url: baseUrl + url,
 			data,
-			header,
+			header: headerDate,
 			method,
 			success(res: any): void {
+				if (res.data.code === 2) {
+
+				}
+
+				if (res.data.code !== 0) {
+					return SHOW_MSG({ title: res.data.message })
+				}
+
 				resolve(res.data);
 				console.log('ajax-success', res.data);
+
+				uni.hideLoading()
 			},
 			fail(err: any): void {
 				reject(err);
 				console.log('ajax-error', err);
+			},
+			complete(res: any) {
+
 			}
 		})
 	})

@@ -29,6 +29,7 @@
 	import Vue from 'vue'
 	import {uniIcon} from "@dcloudio/uni-ui"
 	import MyButton from '../../components/button/button.vue'
+	import { mapActions } from "vuex";
 
 
 	export default Vue.extend({
@@ -36,7 +37,11 @@
 		data() {
 			return {}
 		},
+		onShow(){
+			this.getAddressList();
+		},
 		methods: {
+			...mapActions('Address',['getAddressList']),
 			toAddAddress() {
 				uni.navigateTo({
 					url: "/pages/add-address/add-address"

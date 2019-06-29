@@ -4,4 +4,4 @@
 
 import {ajax} from "@/api/api";
 
-export const reqInfo =()=> ajax('/fund/info',{},true,'GET');
+export const reqInfo =()=> ajax('/fund/info',{},'GET');

@@ -4,9 +4,9 @@
 
 	export default Vue.extend({
 		mpType: 'app',
-		onLaunch() {
+	async	onLaunch() {
 			// #ifndef H5
-			this.login({ data: 1 })
+		await this.login({ data: 1 })
 			// #endif
 		},
 		onShow() {
@@ -17,7 +17,6 @@
 		},
 		methods: {
 			...mapActions('User', ['login']),
-			...mapActions('Product', ['getProductInfo']),
 		},
 	});
 </script>

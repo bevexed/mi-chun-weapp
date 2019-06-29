@@ -1,10 +1,5 @@
 <template>
 	<div class="address">
-		<div class="get-address">
-			<uni-icon color="#02D314" size="26" type="weixin"></uni-icon>
-			<span>获取微信收货地址</span>
-		</div>
-
 		<ul class="address-list">
 			<li>
 				<header>
@@ -20,19 +15,20 @@
 					<label for="phone">
 						电话
 					</label>
-					<input id="phone" type="number"  maxlength="11" v-model="phone" placeholder="收货人手机号">
+					<input id="phone" type="number" maxlength="11" v-model="phone" placeholder="收货人手机号">
 				</header>
 			</li>
 
-			<!--			<li>-->
-			<!--				<header>-->
-			<!--					<label for="address">-->
-			<!--						地区-->
-			<!--					</label>-->
-			<!--					<input id="address" placeholder="选择省市区" type="text">-->
-
-			<!--				</header>-->
-			<!--			</li>-->
+			<li>
+				<picker mode="region" @change="bindPickerChange">
+					<header>
+						<label>
+							地区
+						</label>
+						<div class="value">{{ addressList[0] }}/{{ addressList[1] }}/{{ addressList[2] }}</div>
+					</header>
+				</picker>
+			</li>
 
 			<li>
 				<header>
@@ -46,8 +42,16 @@
 
 		</ul>
 
-		<my-button @tap="getAddAddress({address,phone,userName})" :height="100" :margin="80" title="保存并使用"
-							 :width="710"></my-button>
+		<my-button
+			@tap="getAddAddress({
+					address:addressList.toString() + address,
+					phone,
+					userName
+				})"
+			:height="100"
+			:margin="80"
+			title="保存并使用"
+			:width="710"></my-button>
 	</div>
 </template>
 
@@ -63,11 +67,18 @@
 		components: { uniIcon, MyButton },
 		data() {
 			return {
-				address: '', userName: '', phone: ''
+				address: '',
+				userName: '',
+				phone: '',
+				addressList: ['浙江省', '杭州市', '滨江区']
 			}
 		},
 		methods: {
 			...mapActions('Address', ['getAddAddress']),
+			bindPickerChange(e) {
+				console.log('picker发送选择改变，携带值为', e.target.value);
+				this.addressList = e.target.value
+			},
 		}
 	});
 </script>
@@ -135,6 +146,10 @@
 
 				label {
 					width: upx(180);
+				}
+
+				.value {
+					flex: 1;
 				}
 			}
 

@@ -1,7 +1,9 @@
-import {PRODUCT_INFO} from '../mutation-types';
+import {
+	USER_LOGIN
+} from '../mutation-types';
 
 export default {
-	[PRODUCT_INFO](state: any, {data}: any) {
-		state.data = data;
+	[USER_LOGIN](state: any, { data }: any) {
+		state.userData = data;
 	},
 };
