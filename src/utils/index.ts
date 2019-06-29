@@ -44,4 +44,19 @@ export const MSG_BACK = ({ title, icon = "success", during = 2000 }: MsgToOption
 			}, during)
 		}
 	})
-}
+};
+
+export const MSG_RELAUNCH = ({ title, url, icon = "success", during = 2000 }: MsgToOption) => {
+	uni.showToast({
+		title,
+		icon,
+		mask: true,
+		success() {
+			setTimeout(() => {
+				uni.reLaunch({
+					url
+				})
+			}, during)
+		}
+	})
+};

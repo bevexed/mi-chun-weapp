@@ -1,7 +1,5 @@
 import { SHOW_MSG } from "@/utils";
 
-
-
 interface Ajax {
 	(url: string,
 	 data: object,
@@ -26,7 +24,7 @@ const header = () => {
 				header = { ...header, 'token': res.data };
 				resolve(header)
 			},
-			fail() {
+			async fail() {
 				resolve(header)
 			}
 		});
