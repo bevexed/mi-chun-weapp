@@ -1,9 +1,10 @@
 import {
-	ADD_ADDRESS
+	ADD_ADDRESS,
+	GET_ADDRESS_LIST
 } from '../mutation-types';
 
-import { reqAddAddress, Address, reqAddress } from "@/api/address";
-import { MSG_TO, SHOW_MSG } from "@/utils";
+import { reqAddAddress, Address, reqAddress, UpdateAddressOption, reqUpdateAddress } from "@/api/address";
+import { MSG_BACK, SHOW_MSG } from "@/utils";
 
 export const getAddAddress = async ({ commit }: any, data: Address) => {
 	let p = /^1\d{10}$/;
@@ -16,13 +17,25 @@ export const getAddAddress = async ({ commit }: any, data: Address) => {
 	let res = await reqAddAddress(data);
 	if (res.code === 0) {
 		commit(ADD_ADDRESS, { data });
-		MSG_TO({
+		MSG_BACK({
 			title: '添加地址成功',
-			url: '/pages/address/address'
 		})
 	}
 };
 
 export const getAddressList = async ({ commit }: any) => {
 	let res = await reqAddress();
+	if (res.code === 0) {
+		commit(GET_ADDRESS_LIST, res)
+	}
+};
+
+
+export const updateAddress = async ({}, data: UpdateAddressOption) => {
+	let res = await reqUpdateAddress(data);
+	if (res.code === 0) {
+		MSG_BACK({
+			title:'修改地址成功',
+		})
+	}
 };

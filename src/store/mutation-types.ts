@@ -7,3 +7,4 @@ export const PRODUCT_INFO = 'product_info';
 
 // 地址
 export const ADD_ADDRESS = 'add_address';
+export const GET_ADDRESS_LIST = 'get_address_list';

@@ -12,7 +12,7 @@ export const SHOW_MSG = ({ title, icon = "none" }: Toast) => {
 };
 
 interface MsgToOption extends Toast {
-	url: string,
+	url?: string,
 	during?: number
 }
 

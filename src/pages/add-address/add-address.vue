@@ -19,16 +19,16 @@
 				</header>
 			</li>
 
-			<li>
-				<picker mode="region" @change="bindPickerChange">
-					<header>
-						<label>
-							地区
-						</label>
-						<div class="value">{{ addressList[0] }}/{{ addressList[1] }}/{{ addressList[2] }}</div>
-					</header>
-				</picker>
-			</li>
+<!--			<li>-->
+<!--				<picker mode="region" @change="bindPickerChange">-->
+<!--					<header>-->
+<!--						<label>-->
+<!--							地区-->
+<!--						</label>-->
+<!--						<div class="value">{{ addressList[0] }}/{{ addressList[1] }}/{{ addressList[2] }}</div>-->
+<!--					</header>-->
+<!--				</picker>-->
+<!--			</li>-->
 
 			<li>
 				<header>
@@ -44,7 +44,7 @@
 
 		<my-button
 			@tap="getAddAddress({
-					address:addressList.toString() + address,
+					address:addressList.join('') + ' '+ address,
 					phone,
 					userName
 				})"

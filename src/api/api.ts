@@ -1,5 +1,6 @@
 import { SHOW_MSG } from "@/utils";
-import logger from "vuex/dist/logger";
+
+
 
 interface Ajax {
 	(url: string,
@@ -50,7 +51,7 @@ export const ajax: Ajax = async (url, data, method = "GET", loading = true) => {
 			method,
 			success(res: any): void {
 				if (res.data.code === 2) {
-
+					return SHOW_MSG({ title: res.data.message })
 				}
 
 				if (res.data.code !== 0) {

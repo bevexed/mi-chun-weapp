@@ -6,7 +6,7 @@
 					<label for="name">
 						姓名
 					</label>
-					<input id="name" placeholder="收货人姓名" type="text">
+					<input id="name" placeholder="收货人姓名" type="text" v-model="userName">
 				</header>
 			</li>
 
@@ -15,18 +15,20 @@
 					<label for="phone">
 						电话
 					</label>
-					<input id="phone" placeholder="收货人手机号" type="text">
+					<input id="phone" placeholder="收货人手机号" type="number" maxlength="11" v-model="phone">
 				</header>
 			</li>
 
-			<li>
-				<header>
-					<label for="address">
-						地区
-					</label>
-					<input id="address" placeholder="选择省市区" type="text">
-				</header>
-			</li>
+			<!--			<li>-->
+			<!--				<picker mode="region" @change="bindPickerChange">-->
+			<!--					<header>-->
+			<!--						<label>-->
+			<!--							地区-->
+			<!--						</label>-->
+			<!--						<div class="value">{{ addresses[0] }}/{{ addresses[1] }}/{{ addresses[2] }}</div>-->
+			<!--					</header>-->
+			<!--				</picker>-->
+			<!--			</li>-->
 
 			<li>
 				<header>
@@ -34,34 +36,53 @@
 						详细地址
 					</label>
 				</header>
-				<textarea id="address-detail" placeholder="街道门牌、楼层房间号等信息" type="text"></textarea>
+				<textarea v-model="address" id="address-detail" placeholder="街道门牌、楼层房间号等信息" type="text"></textarea>
 			</li>
 
 
 		</ul>
 
-		<my-button @tap="saveAddress" :height="100" :margin="80" title="保存并使用" :width="710"></my-button>
-		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" :height="100" :margin="-60" title="删除收货地址" :width="710"></my-button>
+		<my-button :height="100" :margin="80" title="保存并使用" :width="710" @tap="updateAddress({
+		addressId,
+		address,
+		userName,
+		phone
+		})"></my-button>
+		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" :height="100" :margin="-60"
+							 title="删除收货地址" :width="710"></my-button>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue'
-	import {uniIcon} from "@dcloudio/uni-ui"
+	import { uniIcon } from "@dcloudio/uni-ui"
 	import MyButton from '../../components/button/button.vue'
+	import { mapActions, mapState } from "vuex";
 
 	export default Vue.extend({
-		components: {uniIcon, MyButton},
+		components: { uniIcon, MyButton },
 		data() {
-			return {}
-		},
-		methods: {
-			saveAddress() {
-				uni.navigateBack({
-					delta: 1
-				})
+			return {
+				addressId: '',
+				address: '',
+				userName: '',
+				phone: '',
+				addresses: ['浙江省', '杭州市', '滨江区']
 			}
-		}
+		},
+		async onLoad(e) {
+			const { id } = e;
+			this.addressId = id;
+			await this.getAddressList();
+			const cur = this.addressList.filter(item => item.id === Number(id));
+			const { address, userName, phone } = cur[0];
+			this.address = address;
+			this.userName = userName;
+			this.phone = phone;
+		},
+		computed: mapState('Address', ['addressList']),
+		methods: mapActions('Address', ['getAddressList', 'updateAddress']),
+
 	});
 </script>
 
