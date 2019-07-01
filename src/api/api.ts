@@ -22,9 +22,12 @@ const header = () => {
 			key: 'token',
 			success(res) {
 				header = { ...header, 'token': res.data };
+				header = { ...header, 'token': '97828eb614ca4419a5dd4d332ffb1e3e' };
+
 				resolve(header)
 			},
 			async fail() {
+				header = { ...header, 'token': '97828eb614ca4419a5dd4d332ffb1e3e' };
 				resolve(header)
 			}
 		});
@@ -63,6 +66,8 @@ export const ajax: Ajax = async (url, data, method = "GET", loading = true) => {
 			},
 			fail(err: any): void {
 				reject(err);
+				SHOW_MSG({ title: err });
+				uni.hideLoading();
 				console.log('ajax-error', err);
 			},
 			complete(res: any) {

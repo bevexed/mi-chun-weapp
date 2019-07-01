@@ -1,27 +1,27 @@
 <template>
 	<div class="my-order">
 		<ul>
-			<li class="good" v-for="(i,index) in list" :key="index">
-				<header>
-					<img alt="" src="">
+			<li class="good" v-for="(order,listIndex) in orderList" :key="listIndex">
+				<header v-for="(good,goodIndex) in order.skus" :key="goodIndex">
+					<img alt="" :src="order.images[0]">
 					<section class="right">
 						<div class="detail">
 
 							<div class="title">
-								Y1迷纯雾化弹
+								{{ good.title }}
 							</div>
 							<div class="content">
-								一星-薄荷味-N5%
+								{{ good.content }}
 							</div>
 
 							<div class="price">
-								￥300.00
+								￥{{ good.checkOutPrice }}
 							</div>
 						</div>
 
 						<div class="rest">
-							<div>x10</div>
-							<div>返利￥7.35</div>
+							<div>x{{ good.count }}</div>
+							<div>返利￥{{ good.profitMoney }}</div>
 						</div>
 					</section>
 				</header>
@@ -29,119 +29,38 @@
 				<section class="form">
 					<ul>
 						<li>
-							订单编号：1278638716237851
+							订单编号：{{ order.orderNum }}
 						</li>
 						<li>
-							支付编号：1278638716237851
+							支付编号：{{ order.payDate }}
 						</li>
 						<li>
-							收货人：张三
+							收货人：{{ order.receiveName }}
 						</li>
 						<li>
-							手机号：13888888888
+							手机号：{{ order.receivePhone }}
 						</li>
 						<li>
-							收货地址：浙江省杭州市西湖区天目山路xx号xx大厦
+							收货地址：{{ order.receiveAddress }}
 						</li>
 
 					</ul>
 				</section>
 
 				<!-- 待发货 -->
-				<footer class="footer" v-if="i  === 1">
+				<footer class="footer">
 					<div class="buttons">
-						<my-button :height="50" title="取消订单" :width="180"></my-button>
+						<my-button
+							v-for="(button ,index) in order.completions"
+							:key="index"
+							:height="50"
+							:title="button.title"
+							@tap="doComplete(order.completions[index].action)"
+							:width="180"></my-button>
 					</div>
 
 					<div class="state">
-						待发货
-					</div>
-				</footer>
-
-				<!-- 订单完成 -->
-				<footer class="footer"  v-if="i  === 2">
-					<div class="buttons">
-						<my-button :height="50" title="申请售后" :width="180"></my-button>
-					</div>
-
-					<div class="state">
-						订单完成
-					</div>
-				</footer>
-
-				<!-- 订单完成 -->
-				<footer class="footer"  v-if="i  === 3">
-					<div class="buttons">
-					</div>
-
-					<div class="state">
-						订单完成
-					</div>
-				</footer>
-
-				<!-- 售后未通过 -->
-				<footer class="footer"  v-if="i  === 4">
-					<div class="buttons">
-						<my-button :height="50" title="申请售后" :width="180"></my-button>
-					</div>
-
-					<div class="state">
-						售后未通过
-					</div>
-				</footer>
-
-				<!-- 待付款 -->
-				<footer class="footer"  v-if="i  === 5">
-					<div class="buttons">
-						<my-button :height="50" title="去支付" :width="180"></my-button>
-						<my-button background-color="#fff" color="#000" :height="50" title="取消订单" :width="180"></my-button>
-					</div>
-
-					<div class="state">
-						待付款
-					</div>
-				</footer>
-
-				<!-- 已发货 -->
-				<footer class="footer"  v-if="i  === 6">
-					<div class="buttons">
-						<my-button :height="50" title="确认收货" :width="180"></my-button>
-						<my-button background-color="#fff" color="#000" :height="50" title="查看物流" :width="180"></my-button>
-					</div>
-
-					<div class="state">
-						已发货
-					</div>
-				</footer>
-
-				<!-- 售后中 -->
-				<footer class="footer"  v-if="i  === 7">
-					<div class="buttons">
-						<my-button :height="50" title="取消售后" :width="180"></my-button>
-					</div>
-
-					<div class="state">
-						售后中
-					</div>
-				</footer>
-
-				<!-- 退款成功 -->
-				<footer class="footer"  v-if="i  === 8">
-					<div class="buttons">
-					</div>
-
-					<div class="state">
-						退款成功
-					</div>
-				</footer>
-
-				<!-- 交易关闭 -->
-				<footer class="footer" v-if="i === 9">
-					<div class="buttons">
-					</div>
-
-					<div class="state">
-						交易关闭
+						{{ order.stateText }}
 					</div>
 				</footer>
 
@@ -153,15 +72,32 @@
 <script lang="ts">
 	import Vue from 'vue'
 	import MyButton from '../../components/button/button.vue'
+	import { mapActions, mapState } from 'vuex';
+	import { ajax } from "@/api/api";
 
 	export default Vue.extend({
 		name: "my-order",
 		components: {
 			MyButton
 		},
-		data(){
-			return{
-				list:[1,2,3,4,5,6,7,8,9]
+		async onShow() {
+			await this.getOrderList({})
+		},
+		computed: mapState('Order', ['orderList']),
+		methods: {
+			...mapActions('Order', ['getOrderList']),
+
+			async doComplete(url: string) {
+				let res = await ajax(url, {}, 'GET');
+				if (res.code === 0){
+					await this.getOrderList({});
+					uni.showToast({title:'操作成功'})
+				}
+			}
+		},
+		data() {
+			return {
+				list: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 			}
 		}
 	})
@@ -175,7 +111,8 @@
 			background: #fff;
 			margin: upx(20) 0 0 0;
 			padding: upx(30) upx(30) 0;
-			&:last-child{
+
+			&:last-child {
 				margin-bottom: upx(40);
 			}
 
