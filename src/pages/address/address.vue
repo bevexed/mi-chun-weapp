@@ -31,7 +31,6 @@
 	import MyButton from '../../components/button/button.vue'
 	import { mapActions, mapState } from "vuex";
 
-
 	export default Vue.extend({
 		components: { uniIcon, MyButton },
 		data() {

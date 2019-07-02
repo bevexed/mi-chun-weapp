@@ -1,7 +1,8 @@
 // 用户信息
 export const USER_LOGIN = 'user_login';
 
-// 商品详情
+// 商品
+export const GET_PRODUCT_LIST = 'get_product_list';
 export const PRODUCT_INFO = 'product_info';
 
 

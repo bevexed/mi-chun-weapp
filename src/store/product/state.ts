@@ -1,3 +1,4 @@
 export default {
-	userData: {},
+	productList: [],
+	productInfo: {}
 }

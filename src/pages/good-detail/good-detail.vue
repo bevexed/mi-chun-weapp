@@ -1,6 +1,6 @@
 <template>
 	<div class="good-detail">
-		<image class="shop-img" mode="widthFix" src="../../static/dev/1.jpg"></image>
+		<image class="shop-img" mode="widthFix" src="../../static/dev/1.jpg" v-for="(img,imgIndex) in sku.images" :key="imgIndex"></image>
 
 		<footer>
 			<div class="custom">客服</div>
@@ -12,45 +12,31 @@
 				<header>
 					<img alt="" mode="widthFix" src="../../static/dev/1.jpg">
 					<div>
-						<div class="name">Y1迷纯雾化器</div>
-						<div class="price">￥39.00 <span>￥49</span></div>
+						<div class="name">{{ sku.title }}</div>
+						<div class="price">￥{{ sku.couponPrice }} <span>￥{{ sku.price }}</span></div>
 					</div>
 				</header>
 
-				<section class="color">
-					<div class="title"> 机体颜色</div>
+				<section class="color" v-for="(attr,attrIndex) in productInfo.attribes" :key="attrIndex">
+					<div class="title"> {{ attr.attributeTitle }}</div>
 
 					<div class="tabs">
 						<div
-							:class="['tab',{'tab-active':index === currentColor}]"
+							:class="['tab',{'tab-active':index === cur[attrIndex]}]"
 							:key="index"
-							@tap="handleColor(index)"
-							v-for="(tab,index) in tabList"
+							@tap="handelChange(index,attrIndex)"
+							v-for="(tab,index) in attr.items"
 						>
-							{{tab}}
+							{{tab.attributeTitle}}
 						</div>
 					</div>
 				</section>
 
-				<section class="type">
-					<div class="title">款式</div>
-
-					<div class="tabs">
-						<div
-							:class="['tab',{'tab-active':index === currentType }]"
-							:key="index"
-							@tap="handleType(index)"
-							v-for="(tab,index) in typeList"
-						>
-							{{tab}}
-						</div>
-					</div>
-				</section>
 
 				<section class="num">
 					<div class="title">购买数量</div>
-					<div class="red">限购1件</div>
-					<uni-number-box :max="99999" :min="1" @change="handleNum"></uni-number-box>
+					<div class="red">限购{{ sku.stockCount }}件</div>
+					<uni-number-box :max="sku.stockCount" :min="1" @change="handleNum"></uni-number-box>
 				</section>
 
 				<section class="buy-now" @tap="toSubmitOrder">
@@ -66,31 +52,45 @@
 	import Vue from 'vue'
 
 	import {uniNumberBox} from '@dcloudio/uni-ui'
+	import { mapActions, mapState } from 'vuex';
 
 	export default Vue.extend({
 		name: "good-detail",
 		components: {
 			uniNumberBox
 		},
+		async onLoad(e: any) {
+			const { skuId } = e;
+			this.skuId = skuId;
+			await this.getProductInfo()
+		 	this.sku = this.productInfo.skus.filter((item:any)=> item.skuId === Number(skuId))[0]
+		},
 		data() {
 			return {
+				skuId: '',
+
+				sku:{},
+
 				tabList: ['金色', '黑色', '天空灰'],
-				currentColor: 0,
 
 				typeList: ['标准款', '高级'],
-				currentType: 0,
+
+				cur: [0, 0],
 
 				popShow: false
 
 			}
 		},
+		computed: {
+			...mapState('Product', ['productInfo']),
+		},
 		methods: {
-			handleColor(index: number) {
-				this.currentColor = index;
+			...mapActions('Product', ['getProductInfo']),
+			handelChange(index: number, attr: number) {
+				this.cur.splice(attr, 1, index);
+				console.log(this.cur);
 			},
-			handleType(index: number) {
-				this.currentType = index;
-			},
+
 			handleNum(e: MouseEvent) {
 				console.log(e);
 			},

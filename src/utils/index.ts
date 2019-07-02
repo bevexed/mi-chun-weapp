@@ -60,3 +60,5 @@ export const MSG_RELAUNCH = ({ title, url, icon = "success", during = 2000 }: Ms
 		}
 	})
 };
+
+export const TO = (url: string) => uni.navigateTo({ url });

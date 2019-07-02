@@ -1,27 +1,27 @@
 <template>
 	<div>
-		<image @tap="toGoodDetail" src="../../static/dev/1.jpg"></image>
-		<image src="../../static/dev/1.jpg"></image>
+		<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" :src="product.images" v-for="(product,index) in productList" :key="index" alt=""/>
 	</div>
 </template>
 
 <script lang="ts">
 	import Vue from 'vue'
+	import { mapActions, mapState } from 'vuex';
+	import {TO} from "@/utils";
 
 	export default Vue.extend({
 		name: "shop",
 		data() {
 			return {}
 		},
-		onLoad() {
-			console.log('shop');
+		async onShow() {
+			// @ts-ignore
+			await this.getProductList({});
 		},
+		computed:mapState('Product',['productList']),
 		methods: {
-			toGoodDetail() {
-				uni.navigateTo({
-					url:'/pages/good-detail/good-detail'
-				})
-			}
+			...mapActions('Product', ['getProductList']),
+			TO,
 		}
 	})
 </script>
@@ -31,9 +31,10 @@
 		text-align: center;
 	}
 
-	image {
+	img {
 		width: upx(710);
 		height: upx(720);
+		border: upx(1) solid #3f536e;
 		margin: upx(20) 0 0;
 	}
 </style>
