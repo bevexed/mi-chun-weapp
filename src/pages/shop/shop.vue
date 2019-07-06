@@ -1,6 +1,10 @@
 <template>
 	<div>
-		<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" :src="product.images" v-for="(product,index) in productList" :key="index" alt=""/>
+		<div  v-for="(product,index) in productList">
+			<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" :src="product.images" :key="index" alt=""/>
+			{{ product.skuId }}
+
+		</div>
 	</div>
 </template>
 

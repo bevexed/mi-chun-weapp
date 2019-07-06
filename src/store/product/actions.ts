@@ -10,7 +10,7 @@ export const getProductList = async ({ commit }: any, data?: any) => {
 };
 
 export const getProductInfo = async ({ commit }: any, data?: any) => {
-		let res = await reqProductInfo(13);
+		let res = await reqProductInfo(data);
 		if (res.code ===0) {
 			commit(PRODUCT_INFO, res)
 		}

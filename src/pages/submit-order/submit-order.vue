@@ -1,10 +1,11 @@
 <template>
 	<div class="submit-order">
-		<header @tap="toSelectAddress" class="add">
+		<header @tap="toSelectAddress" class="add" v-for="(address,addressIndex) in addressList" v-if="addressIndex === 0"
+						:key="addressIndex">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
-				<div class="name">吴彦祖 <span class="phone">13111114444</span></div>
-				<div class="address">浙江省杭州市滨江区网商路399号网易二期</div>
+				<div class="name">{{ address.userName }} <span class="phone">{{ address.phone }}</span></div>
+				<div class="address">{{ address.address }}</div>
 			</div>
 		</header>
 
@@ -42,7 +43,7 @@
 		<aside>
 			<div class="title">实付款：</div>
 			<div class="red">￥39.00</div>
-			<my-button :height="70" :width="200" @tap="popShow=true" title="付款"></my-button>
+			<my-button :height="70" :width="200" @tap="createOrder" title="付款"></my-button>
 		</aside>
 
 
@@ -63,7 +64,7 @@
 					</li>
 				</ul>
 
-				<my-button :margin="60" :title="'支付￥45.00'"></my-button>
+				<my-button :margin="60" :title="'支付￥'+payMoney"></my-button>
 
 
 			</section>
@@ -75,6 +76,8 @@
 <script lang="ts">
 	import Vue from 'vue'
 	import myButton from '../../components/button/button.vue'
+	import { mapState, mapActions } from 'vuex';
+	import { reqCreateOrder } from "@/api/order";
 
 	export default Vue.extend({
 		name: "submit-order",
@@ -83,16 +86,44 @@
 		},
 		data() {
 			return {
-				popShow: false
+				popShow: false,
+
+				skus: '',
+				counts: '',
+				addressId: '',
+
+
+				payMoney: ''
 			}
 		},
+		async onLoad(e: { count: string, sku: string }) {
+			const { count, sku } = e;
+			this.counts = count;
+			this.skus = sku;
+			await this.getAddressList()
+			this.addressId = this.addressList[0].id
+		},
+		computed: mapState('Address', ['addressList']),
 		methods: {
+			...mapActions('Address', ['getAddressList']),
 			toSelectAddress() {
 				uni.navigateTo({
 					url: '/pages/select-address/select-address'
 				})
+			},
+
+			async createOrder() {
+				const { skus, counts, addressId, popShow } = this;
+				let res = await reqCreateOrder({ skus, counts, addressId })
+
+				if (res.code === 0) {
+					this.popShow = true
+					this.payMoney = res.data.totalPrice
+				}
 			}
-		}
+		},
+
+
 	})
 </script>
 

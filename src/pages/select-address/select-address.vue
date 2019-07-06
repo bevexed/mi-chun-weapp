@@ -2,16 +2,17 @@
 	<div class="address">
 
 		<ul class="address-list">
-			<li v-for="i in [1,2,3]" :key="i">
+			<li v-for="(v,i) in addressList" :key="i">
 				<section class="left">
 					<header>
-						吴彦祖 17758021312
+						{{ v.userName }} {{ v.phone }}
 					</header>
 					<footer>
-						收货地址：浙江省杭州市滨江区网商路399号网易二期
+						收货地址：{{ v.address }}
 					</footer>
 				</section>
 
+				<img @tap="toEdit(v.id)" alt="" class="editor" src="../../static/editor.jpg">
 			</li>
 
 		</ul>
@@ -24,6 +25,7 @@
 	import Vue from 'vue'
 	import {uniIcon} from "@dcloudio/uni-ui"
 	import MyButton from '../../components/button/button.vue'
+	import { mapActions, mapState } from "vuex";
 
 
 	export default Vue.extend({
@@ -31,7 +33,12 @@
 		data() {
 			return {}
 		},
+		onShow(){
+			this.getAddressList()
+		},
+		computed: mapState('Address', ['addressList']),
 		methods: {
+			...mapActions('Address', ['getAddressList']),
 			toAddAddress() {
 				uni.navigateTo({
 					url: "/pages/add-address/add-address"

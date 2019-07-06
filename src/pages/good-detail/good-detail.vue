@@ -61,8 +61,9 @@
 		},
 		async onLoad(e: any) {
 			const { skuId } = e;
+			console.log(skuId);
 			this.skuId = skuId;
-			await this.getProductInfo()
+			await this.getProductInfo(skuId)
 		 	this.sku = this.productInfo.skus.filter((item:any)=> item.skuId === Number(skuId))[0]
 		},
 		data() {
@@ -77,8 +78,9 @@
 
 				cur: [0, 0],
 
-				popShow: false
+				popShow: false,
 
+				count:0,
 			}
 		},
 		computed: {
@@ -91,8 +93,8 @@
 				console.log(this.cur);
 			},
 
-			handleNum(e: MouseEvent) {
-				console.log(e);
+			handleNum(e: number) {
+				this.count = e
 			},
 
 
@@ -100,7 +102,7 @@
 				this.popShow = false;
 
 				uni.navigateTo({
-					url:'/pages/submit-order/submit-order'
+					url:'/pages/submit-order/submit-order?sku='+this.skuId + '&count=' + this.count
 				})
 			}
 		}
