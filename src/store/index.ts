@@ -6,6 +6,7 @@ import Product from './product'
 import Address from './address'
 import Commission from './commission'
 import Order from './order'
+import Income from './income'
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
 		Product,
 		Address,
 		Commission,
-		Order
+		Order,
+		Income
 	}
 })

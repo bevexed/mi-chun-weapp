@@ -5,7 +5,7 @@
 				<div :class="['month',index === currentOpen?'open':'close']">
 					{{item.time}}
 				</div>
-				<div class="money"> 收入 {{item.income}} 待结算 ￥240</div>
+				<div class="money"> 收入 {{item.income}}</div>
 			</header>
 
 			<ul :style="{
@@ -17,16 +17,16 @@
 
 					<div class="my-border">
 						<section class="detail">
-							<header>会飞的吴彦祖</header>
-							<div>Y1迷纯雾化器</div>
-							<footer>5月1日 13:33</footer>
+							<header>{{ good.skuName }}</header>
+							<div>{{ good.typeText }}</div>
+							<footer>{{ good.month }}月{{ good.day }}日</footer>
 						</section>
 
 						<div class="amount">x1</div>
 
 						<section class="right">
-							<header>+15.60</header>
-							<footer>已存入</footer>
+							<header>+{{ good.money }}</header>
+							<footer>{{ good.stateText }}</footer>
 						</section>
 					</div>
 
@@ -43,21 +43,9 @@
 
 	export default Vue.extend({
 		name: "lists",
+		props:['data'],
 		data() {
 			return {
-				data: [{
-					time: '2019年5月',
-					income: '￥3600',
-					list: [1, 2, 3, 4, 6]
-				}, {
-					time: '2019年4月',
-					income: '￥2400',
-					list: [1, 2, 3, 4]
-				}, {
-					time: '2019年3月',
-					income: '￥2400',
-					list: [1, 2, 3,]
-				}],
 				currentOpen: 0
 			}
 		},

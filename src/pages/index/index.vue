@@ -173,11 +173,16 @@
 						<div>{{ info.consumeFanliRatioFlexed + info.consumeFanliRatioRelatived}}%</div>
 					</div>
 				</section>
+
+				<img src="../../static/index/index_1.jpg" alt="" mode="widthFix">
 			</section>
 
 		</footer>
 
-		<div class="margin-40">
+		<img class="index_2" src="../../static/index/index_2.jpg" alt="" mode="widthFix">
+
+		<div style="padding:40px 0"></div>
+		<div class="fix">
 			<my-button
 				title="分享推广商品"
 			></my-button>
@@ -193,7 +198,7 @@
 	import { reqInfo } from "@/api/home";
 
 	import MyButton from '@/components/button/button.vue'
-	import { uniNoticeBar } from "@dcloudio/uni-ui"
+	import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
 
 	export default Vue.extend({
 			components: {
@@ -534,6 +539,17 @@
 			font-size: upx(20);
 		}
 
+		.index_2{
+			width: 100vw;
+		}
+
+		.fix{
+			position: fixed;
+			bottom: upx(40);
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
 	}
 
 

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<my-list></my-list>
+		<my-list :data="today"></my-list>
 	</div>
 </template>
 
@@ -8,19 +8,19 @@
 	import Vue from 'vue'
 	import MyList from "../../components/lists/lists.vue"
 	import { reqCommissionList } from "../../api/commission";
+	import { mapActions, mapGetters } from "vuex";
 
 	export default Vue.extend({
 		name: "today-come",
 		components: {
 			MyList
 		},
-		onShow(){
-			this.getCommissionList()
+		async onShow() {
+			await this.getIncome()
 		},
-		methods:{
-			async getCommissionList(){
-				let res = await reqCommissionList()
-			}
-		}
+		computed:mapGetters('Income',['today']),
+
+		methods: mapActions('Income',['getIncome']),
+
 	})
 </script>
