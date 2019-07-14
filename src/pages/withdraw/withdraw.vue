@@ -16,12 +16,16 @@
 
 		<div class="wrap">
 			<ul>
-				<li>
-					<div class="left">提现账户</div>
-					<div class="right p">
-						<input disabled placeholder="去设置" type="text" @tap="toBank">
-					</div>
-				</li>
+				<picker :range="bankList" :value="bank" @change="selectBank" range-key="name">
+					<li>
+						<div class="left">提现账户</div>
+						<div class="right p">
+							{{ bankList[bank].name }}
+							<input @tap="toBank" disabled placeholder="去设置" type="text" v-if="bankList.length === 0">
+						</div>
+					</li>
+				</picker>
+
 			</ul>
 		</div>
 
@@ -38,6 +42,11 @@
 		components: {
 			MyButton
 		},
+		data() {
+			return {
+				bank: 0
+			}
+		},
 		computed: {
 			...mapState('Balance', ['balance']),
 			...mapState('Bank', ['bankList']),
@@ -51,6 +60,11 @@
 		methods: {
 			...mapActions('Balance', ['getBalance']),
 			...mapActions('Bank',['getBankList']),
+
+			selectBank(e){
+				console.log(e);
+				this.bank = e.target.value
+			},
 
 			toBank(){
 				uni.navigateTo({
