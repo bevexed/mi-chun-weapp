@@ -15,3 +15,4 @@ export const reqAccountList = ()=> ajax('/withdraw/account/list',{},'GET');
 
 export const reqWithdrawOrderList = () => ajax('/withdraw/order/list',{},'GET');
 
+export const reqWidthdrawOrderInfo = (id: any) => ajax('/withdraw/order/info', { id }, 'GET');

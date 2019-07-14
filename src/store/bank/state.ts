@@ -4,5 +4,6 @@ export default {
 	accountList:[],
 
 
-	withdrawOrderList:[]
+	withdrawOrderList: [],
+	withdrawOrderInfo: {}
 }

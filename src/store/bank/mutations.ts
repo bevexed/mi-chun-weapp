@@ -1,6 +1,6 @@
 import {
 	GET_ACCOUNT_LIST,
-	GET_BANK_LIST, GET_WITHDRAW_ORDER_LIST
+	GET_BANK_LIST, GET_WITHDRAW_ORDER_INFO, GET_WITHDRAW_ORDER_LIST
 } from '../mutation-types';
 
 export default {
@@ -12,5 +12,8 @@ export default {
 	},
 	[GET_WITHDRAW_ORDER_LIST](state: any, { data }: any) {
 		state.withdrawOrderList = data.result
+	},
+	[GET_WITHDRAW_ORDER_INFO](state:any,{data}:any){
+		state.withdrawOrderInfo = data
 	}
 };

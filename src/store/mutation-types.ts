@@ -35,3 +35,4 @@ export const GET_BANK_LIST = 'get_bank_list';
 export const GET_ACCOUNT_LIST = 'get_account_list';
 
 export const GET_WITHDRAW_ORDER_LIST ='get_withdraw_order_list';
+export const GET_WITHDRAW_ORDER_INFO = 'get_withdraw_order_info'

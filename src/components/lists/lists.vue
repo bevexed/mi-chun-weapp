@@ -12,7 +12,9 @@
 			maxHeight:currentOpen===index?150 * item.list.length +'px':0,
 			}">
 				<li :key="goodIndex"
-						v-for="(good,goodIndex) in item.list">
+						v-for="(good,goodIndex) in item.list"
+						@tap="toDetail(good.id)"
+				>
 					<img alt="" src="../../static/out-b.png">
 
 					<div class="my-border">
@@ -61,6 +63,11 @@
 				} else {
 					this.currentOpen = index
 				}
+			},
+			toDetail(id){
+				uni.navigateTo({
+					url:'/pages/detail/detail?id='+id
+				})
 			}
 		}
 
