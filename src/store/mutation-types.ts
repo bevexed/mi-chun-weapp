@@ -30,4 +30,6 @@ export const GET_BALANCE = 'get_balance';
 
 
 // 提现
+export const ADD_ACOUNT ='add_account';
 export const GET_BANK_LIST = 'get_bank_list';
+export const GET_ACCOUNT_LIST = 'get_account_list';

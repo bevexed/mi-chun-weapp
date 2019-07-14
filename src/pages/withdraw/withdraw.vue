@@ -16,15 +16,13 @@
 
 		<div class="wrap">
 			<ul>
-				<picker :range="bankList" :value="bank" @change="selectBank" range-key="name">
-					<li>
+				<li @tap="selectBank">
 						<div class="left">提现账户</div>
 						<div class="right p">
-							{{ bankList[bank].name }}
+							{{ accountList[bank].name }}
 							<input @tap="toBank" disabled placeholder="去设置" type="text" v-if="bankList.length === 0">
 						</div>
 					</li>
-				</picker>
 
 			</ul>
 		</div>
@@ -49,21 +47,40 @@
 		},
 		computed: {
 			...mapState('Balance', ['balance']),
-			...mapState('Bank', ['bankList']),
+			...mapState('Bank', ['bankList','accountList']),
 		},
 		async onShow() {
 			//@ts-ignore
 			await this.getBalance();
-			await this.getBankList();
+			await this.getAccountList();
+
+			if (this.bankList.length) {
+				this.bankList.push({
+					name: '添加银行卡',
+					id: -1
+				})
+			}
 
 		},
 		methods: {
 			...mapActions('Balance', ['getBalance']),
-			...mapActions('Bank',['getBankList']),
+			...mapActions('Bank',['getAccountList']),
 
-			selectBank(e){
-				console.log(e);
-				this.bank = e.target.value
+			selectBank(){
+				uni.showActionSheet({
+					itemList: this.accountList.map(item => item.name),
+					success: res => {
+						console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+						if (this.bankList[res.tapIndex].id === -1) {
+						 return 	this.toBank()
+						}
+						this.bank = res.tapIndex
+
+					},
+					fail: function (res) {
+						console.log(res.errMsg);
+					}
+				});
 			},
 
 			toBank(){

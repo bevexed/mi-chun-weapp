@@ -2,24 +2,35 @@
 	<div class="withdraw">
 		<div class="wrap">
 			<ul>
-				<li>
-					<div class="left">银行</div>
-					<div>请选择银行</div>
-					<div class="right p"></div>
-				</li>
+				<picker :range="bankList" :value="bank" @change="selectBank" range-key="name">
+
+					<li>
+						<div class="left">银行</div>
+						<div>{{ bankList[bank].name || '请选择银行' }}</div>
+						<div class="right p"></div>
+					</li>
+				</picker>
 				<li>
 					<div class="left">银行卡卡号</div>
-					<div class="right"><input placeholder="请输入银行卡卡号" type="number"></div>
+					<div class="right"><input placeholder="请输入银行卡卡号" type="number" v-model="account"></div>
 				</li>
 				<li>
 					<div class="left">姓名</div>
-					<div class="right"><input placeholder="填入姓名" type="text"></div>
+					<div class="right"><input placeholder="填入姓名" type="text" v-model="name"></div>
 				</li>
 			</ul>
 
 		</div>
 
-		<my-button title="完成" margin="80" width="710"></my-button>
+		<my-button
+			@tap="addAccount({
+							 bankId:bankList[bank].id,
+								name,
+								account
+							 })"
+			margin="80"
+			title="完成"
+			width="710"></my-button>
 	</div>
 </template>
 
@@ -32,13 +43,30 @@
 		components: {
 			MyButton
 		},
-		computed: mapState('Balance', ['balance']),
+		data() {
+			return {
+				bank: 0,
+				account: '',
+				name: ''
+			}
+		},
+		computed: {
+			...mapState('Balance', ['balance']),
+			...mapState('Bank', ['bankList'])
+		},
 		async onShow() {
 			//@ts-ignore
 			await this.getBalance()
+			await this.getBankList();
+
 		},
 		methods: {
-			...mapActions('Balance', ['getBalance'])
+			...mapActions('Balance', ['getBalance']),
+			...mapActions('Bank', ['getBankList', 'addAccount']),
+
+			selectBank(e) {
+				this.bank = e.target.value
+			},
 		},
 	});
 </script>
