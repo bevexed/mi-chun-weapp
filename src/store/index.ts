@@ -9,6 +9,8 @@ import Order from './order'
 import Income from './income'
 import Customer from './customer'
 import Message from './message'
+import Balance from './balance'
+import Bank from './bank'
 
 Vue.use(Vuex);
 
@@ -21,6 +23,8 @@ export default new Vuex.Store({
 		Order,
 		Income,
 		Customer,
-		Message
+		Message,
+		Balance,
+		Bank
 	}
 })

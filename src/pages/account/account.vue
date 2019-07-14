@@ -33,26 +33,19 @@
 	import Vue from 'vue'
 	import MyButton from '@/components/button/button.vue'
 	import { reqBalance } from "@/api/balance";
+	import { mapActions, mapState } from 'vuex';
 
 	export default Vue.extend({
 		components: {
 			MyButton
 		},
-		data(){
-			return{
-				balance:0
-			}
-		},
+		computed:mapState('Balance',['balance']),
 		async onShow() {
-			await this.getInfo()
+			//@ts-ignore
+			await this.getBalance()
 		},
 		methods: {
-			async getInfo() {
-				let res = await reqBalance();
-				if (res.code === 0) {
-					this.balance = res.data.balance
-				}
-			},
+			...mapActions('Balance',['getBalance']),
 			toWithdraw(){
 				uni.navigateTo({
 					url:'/pages/withdraw/withdraw'

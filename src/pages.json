@@ -119,6 +119,11 @@
 			"style": {
 				"navigationBarTitleText": "今日收益"
 			}
+		},{
+			"path": "pages/bank/bank",
+			"style": {
+				"navigationBarTitleText": "添加银行卡"
+			}
 		}
 	],
 	"tabBar": {

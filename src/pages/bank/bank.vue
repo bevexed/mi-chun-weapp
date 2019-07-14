@@ -3,29 +3,23 @@
 		<div class="wrap">
 			<ul>
 				<li>
-					<div class="left">可提现金额</div>
-					<div class="right"><input :placeholder="'￥'+ balance" disabled type="text"></div>
+					<div class="left">银行</div>
+					<div>请选择银行</div>
+					<div class="right p"></div>
 				</li>
 				<li>
-					<div class="left">本次提现</div>
-					<div class="right"><input placeholder="银行卡单笔最高提现5万" type="text"></div>
+					<div class="left">银行卡卡号</div>
+					<div class="right"><input placeholder="请输入银行卡卡号" type="number"></div>
+				</li>
+				<li>
+					<div class="left">姓名</div>
+					<div class="right"><input placeholder="填入姓名" type="text"></div>
 				</li>
 			</ul>
 
 		</div>
 
-		<div class="wrap">
-			<ul>
-				<li>
-					<div class="left">提现账户</div>
-					<div class="right p">
-						<input disabled placeholder="去设置" type="text" @tap="toBank">
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<my-button title="提现" margin="80" width="710"></my-button>
+		<my-button title="完成" margin="80" width="710"></my-button>
 	</div>
 </template>
 
@@ -38,25 +32,13 @@
 		components: {
 			MyButton
 		},
-		computed: {
-			...mapState('Balance', ['balance']),
-			...mapState('Bank', ['bankList']),
-		},
+		computed: mapState('Balance', ['balance']),
 		async onShow() {
 			//@ts-ignore
-			await this.getBalance();
-			await this.getBankList();
-
+			await this.getBalance()
 		},
 		methods: {
-			...mapActions('Balance', ['getBalance']),
-			...mapActions('Bank',['getBankList']),
-
-			toBank(){
-				uni.navigateTo({
-					url:'/pages/bank/bank'
-				})
-			}
+			...mapActions('Balance', ['getBalance'])
 		},
 	});
 </script>
@@ -88,7 +70,15 @@
 			border-bottom: upx(1) solid #f2f2f2;
 
 			input {
-				text-align: right;
+			}
+
+			.left{
+				width: upx(150);
+				margin-right: upx(20);
+			}
+
+			.right{
+				flex: 1;
 			}
 
 			.p{
