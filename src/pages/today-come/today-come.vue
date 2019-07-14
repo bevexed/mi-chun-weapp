@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<my-list :data="today"></my-list>
+		<my-list :incomeData="today"></my-list>
 	</div>
 </template>
 

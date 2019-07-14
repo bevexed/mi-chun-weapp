@@ -15,3 +15,8 @@ export const GET_ADDRESS_LIST = 'get_address_list';
 
 // 收益
 export const GET_INCOME = 'get_income';
+
+
+// 顾客
+export const GET_CUSTOMER = 'get_customer';
+export const GET_CUSTOMER_ORDER_LIST = 'GET_CUSTOMER_ORDER_LIST';

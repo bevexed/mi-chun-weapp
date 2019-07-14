@@ -43,7 +43,7 @@
 
 	export default Vue.extend({
 		name: "lists",
-		props:['data'],
+		props:['incomeData'],
 		data() {
 			return {
 				currentOpen: 0

@@ -3,20 +3,20 @@
 		<ul>
 			<li
 				:key="personIndex"
-				@tap="fun"
-				v-for="(person,personIndex) in [1,2,3,4,5]"
+				@tap="fun(person.userId)"
+				v-for="(person,personIndex) in customerList"
 			>
 				<img alt="" src="../../static/out-b.png">
 
 				<div class="my-border">
 					<section class="detail">
-						<header>会飞的吴彦祖</header>
-						<footer>关联时间：2019.05.22</footer>
+						<header>{{ person.nickName }}</header>
+						<footer>关联时间：{{ person.connectDate }}</footer>
 					</section>
 
 					<section class="right">
 						<header>成交金额</header>
-						<header>+140.00</header>
+						<header>+{{ person.money }}</header>
 					</section>
 				</div>
 
@@ -31,13 +31,16 @@
 
 	export default Vue.extend({
 		props: {
-			fun: {
-				type: Function,
-				default: function () {
-
-				}
-			}
+			customerList: {
+				type: Array,
+				default: []
+			},
 		},
+		methods:{
+			fun(id){
+				this.$emit('toDetail',id)
+			}
+		}
 	});
 </script>
 

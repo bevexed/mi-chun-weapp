@@ -2,7 +2,6 @@
 	<div>
 		<div  v-for="(product,index) in productList">
 			<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" :src="product.images" :key="index" alt=""/>
-			{{ product.skuId }}
 
 		</div>
 	</div>

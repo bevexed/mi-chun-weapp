@@ -4,7 +4,7 @@
 			<div>累计收益：28600.00</div>
 			<div class="sm">待结算：800.00</div>
 		</header>
-		<my-list :data="data"></my-list>
+		<my-list :incomeDate="data"></my-list>
 	</div>
 </template>
 
@@ -22,7 +22,9 @@
 			await this.getIncome()
 
 		},
-		computed: mapGetters('Income', ['data']),
+		computed: mapGetters('Income', {
+			data: state => state.data
+		}),
 
 		methods: mapActions('Income', ['getIncome'])
 	})

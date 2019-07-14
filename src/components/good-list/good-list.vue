@@ -1,21 +1,21 @@
 <template>
 	<div class="person-list">
 		<ul>
-			<li :key="goodIndex" v-for="(good,goodIndex) in [1,2,3,4,5]">
-				<img alt="" src="../../static/out-b.png">
+			<li :key="goodIndex" v-for="(good,goodIndex) in shopList">
+				<img alt="" :src="good.avatar">
 
 				<div class="my-border">
 					<section class="detail">
-						<header>会飞的吴彦祖</header>
-						<div>Y1迷纯雾化器</div>
-						<footer>5月1日 13:33</footer>
+						<header>{{ good.skuName }}</header>
+						<div>{{ good.skuAttributed }}</div>
+						<footer>{{ good.date }}</footer>
 					</section>
 
-					<div class="amount">x1</div>
+					<div class="amount">x{{ good.skuCount }}</div>
 
 					<section class="right">
-						<header>+15.60</header>
-						<footer>已存入</footer>
+						<header>{{ good.incomeSymbol }} {{ good.money }}</header>
+						<footer>已{{ good.incomeType == 1 ? '入账' : '退账' }}</footer>
 					</section>
 				</div>
 
@@ -29,7 +29,12 @@
 	import Vue from 'vue'
 
 	export default Vue.extend({
-		props: {},
+		props: {
+			shopList: {
+				type: Array,
+				default: []
+			}
+		},
 	});
 </script>
 
