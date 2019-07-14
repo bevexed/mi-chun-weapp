@@ -5,7 +5,7 @@
 
 			<div class="title">我的账户</div>
 
-			<div class="money">￥320.00</div>
+			<div class="money">￥{{ balance }}</div>
 		</header>
 
 		<footer>
@@ -32,12 +32,27 @@
 <script lang="ts">
 	import Vue from 'vue'
 	import MyButton from '@/components/button/button.vue'
+	import { reqBalance } from "@/api/balance";
 
 	export default Vue.extend({
 		components: {
 			MyButton
 		},
+		data(){
+			return{
+				balance:0
+			}
+		},
+		async onShow() {
+			await this.getInfo()
+		},
 		methods: {
+			async getInfo() {
+				let res = await reqBalance();
+				if (res.code === 0) {
+					this.balance = res.data.balance
+				}
+			},
 			toWithdraw(){
 				uni.navigateTo({
 					url:'/pages/withdraw/withdraw'

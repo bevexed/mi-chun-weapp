@@ -1,9 +1,9 @@
 <template>
 	<div class="address">
-		<div class="get-address">
-			<uni-icon color="#02D314" size="26" type="weixin"></uni-icon>
-			<span>获取微信收货地址</span>
-		</div>
+<!--		<div class="get-address">-->
+<!--			<uni-icon color="#02D314" size="26" type="weixin"></uni-icon>-->
+<!--			<span>获取微信收货地址</span>-->
+<!--		</div>-->
 
 		<ul class="address-list">
 			<li v-for="(v,i) in addressList" :key="i">

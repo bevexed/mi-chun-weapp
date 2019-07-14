@@ -17,7 +17,7 @@
 						</div>
 						<div class="right">
 							<span class="label">账户</span>
-							<span class="value">10000.00</span>
+							<span class="value"></span>
 						</div>
 					</li>
 
@@ -27,7 +27,7 @@
 						</div>
 						<div class="right">
 							<span class="label">我的订单</span>
-							<span class="value">7</span>
+							<span class="value"></span>
 						</div>
 					</li>
 
@@ -63,7 +63,7 @@
 						</div>
 						<div class="right">
 							<span class="label">消息通知</span>
-							<span class="value">您申请售后未通过，原因</span>
+							<span class="value"></span>
 						</div>
 					</li>
 
