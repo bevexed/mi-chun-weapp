@@ -1,5 +1,8 @@
 export default {
 	bankList:[],
 
-	accountList:[]
+	accountList:[],
+
+
+	withdrawOrderList:[]
 }

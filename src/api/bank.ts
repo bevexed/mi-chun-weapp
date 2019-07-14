@@ -11,3 +11,7 @@ export const reqAddAccount = (data:AddAccountOption) =>ajax('/withdraw/account/a
 export const reqBankList = () => ajax('/bank/list', {}, 'POST');
 
 export const reqAccountList = ()=> ajax('/withdraw/account/list',{},'GET');
+
+
+export const reqWithdrawOrderList = () => ajax('/withdraw/order/list',{},'GET');
+

@@ -1,5 +1,5 @@
-import { GET_ACCOUNT_LIST, GET_BANK_LIST } from "@/store/mutation-types";
-import { AddAccountOption, reqAccountList, reqAddAccount, reqBankList } from "@/api/bank";
+import { GET_ACCOUNT_LIST, GET_BANK_LIST, GET_WITHDRAW_ORDER_LIST } from "@/store/mutation-types";
+import { AddAccountOption, reqAccountList, reqAddAccount, reqBankList, reqWithdrawOrderList } from "@/api/bank";
 import { MSG_BACK } from "@/utils";
 
 export const addAccount = async ({ commit }: any, data: AddAccountOption) => {
@@ -21,6 +21,13 @@ export const getAccountList = async ({ commit }: any) => {
 	let res = await reqAccountList();
 	if (res.code === 0) {
 		commit(GET_ACCOUNT_LIST, res)
+	}
+}
+
+export const getWithdrawOrderList = async ({ commit }: any) => {
+	let res = await reqWithdrawOrderList();
+	if (res.code === 0) {
+		commit(GET_WITHDRAW_ORDER_LIST,res)
 	}
 }
 

@@ -17,8 +17,8 @@
 
 					<div class="my-border">
 						<section class="detail">
-							<header>{{ good.skuName }}</header>
-							<div>{{ good.typeText }}</div>
+							<header>{{ good.skuName || good.accountText }}</header>
+							<div>{{ good.typeText  || good.account}}</div>
 							<footer>{{ good.month }}月{{ good.day }}日</footer>
 						</section>
 
