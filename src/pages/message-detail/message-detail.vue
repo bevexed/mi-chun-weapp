@@ -6,11 +6,11 @@
 			<div class="board">
 
 				<img alt="" class="error-img" src="../../static/out-no.png">
-				<div class="title">您的提现申请未通过</div>
+				<div class="title">title</div>
 			</div>
 
 			<div class="reason">
-				原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因原因
+				{{ 'none' }}
 			</div>
 		</div>
 
@@ -20,9 +20,16 @@
 
 <script lang="ts">
 	import Vue from 'vue'
+	import { mapActions, mapState } from 'vuex';
 
 	export default Vue.extend({
-		name: "message-detail"
+		name: "message-detail",
+	async	onLoad(e:any){
+			let {type} = e
+			await this.getMessageList(type)
+		},
+		computed:mapState('Message',['msg']),
+		methods:mapActions('Message',['getMessageList'])
 	})
 </script>
 

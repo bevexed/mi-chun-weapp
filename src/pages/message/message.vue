@@ -2,57 +2,22 @@
 	<div class="message">
 		<ul>
 			<li
-				@tap="toMessageDetail"
+				@tap="toMessageDetail(item.type)"
+				v-for="(item,index) in msgList"
 			>
 				<img alt="" src="../../static/out-b.png">
 
 				<div class="my-border">
 					<section class="detail">
-						<header>活动精选</header>
-						<footer>满199-100超值券等你使用！全场低至9.9起…</footer>
+						<header>{{ item.title }}</header>
+						<footer>{{ item.lastMessage.content }}</footer>
 					</section>
 
 					<section class="right">
-						<header>9:33</header>
+						<header>{{ item.lastMessage.addDate }}</header>
 					</section>
 				</div>
 			</li>
-
-			<li
-				@tap="toMessageDetail"
-			>
-				<img alt="" src="../../static/out-b.png">
-
-				<div class="my-border">
-					<section class="detail">
-						<header>客服助手</header>
-						<footer>在线客服资讯时间为09:00-24:00</footer>
-					</section>
-
-					<section class="right">
-						<header>9:33</header>
-					</section>
-				</div>
-			</li>
-
-			<li
-				@tap="toMessageDetail"
-			>
-				<img alt="" src="../../static/out-b.png">
-
-				<div class="my-border">
-					<section class="detail">
-						<header>物流助手</header>
-						<footer> 您的订单836138173687已签收，请前往网易…</footer>
-					</section>
-
-					<section class="right">
-						<header>9:33</header>
-					</section>
-				</div>
-			</li>
-
-
 		</ul>
 	</div>
 
@@ -60,13 +25,21 @@
 
 <script lang="ts">
 	import Vue from 'vue'
+	import { mapActions, mapState } from 'vuex';
 
 	export default Vue.extend({
 		name: "message",
+		async onShow() {
+			// @ts-ignore
+			await this.getMessageTypeList()
+		},
+		computed: mapState('Message', ['msgList']),
 		methods: {
-			toMessageDetail() {
+			// @ts-ignore
+			...mapActions('Message', ['getMessageTypeList']),
+			toMessageDetail(type:any) {
 				uni.navigateTo({
-					url: "/pages/message-detail/message-detail",
+					url: "/pages/message-detail/message-detail?type=" + type,
 				})
 			}
 		}

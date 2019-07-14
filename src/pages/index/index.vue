@@ -1,10 +1,10 @@
 <template>
 	<view class="content">
 		<section class="board">
-			<header @tap="toAllCome">
+			<header @tap="toAllCome(info.profit)">
 				<div class="title">累计收益（元）</div>
 				<div class="title-money">{{ info.profit}}</div>
-				<div class="title">待结算：360.00</div>
+<!--				<div class="title">待结算：360.00</div>-->
 			</header>
 
 			<footer>
@@ -224,9 +224,9 @@
 					}
 				},
 
-				toAllCome() {
+				toAllCome(all:any) {
 					uni.navigateTo({
-						url: '/pages/all-come/all-come'
+						url: '/pages/all-come/all-come?all='+all
 					})
 				},
 				toTodayCome() {

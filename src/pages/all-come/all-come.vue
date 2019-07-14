@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<header>
-			<div>累计收益：28600.00</div>
-			<div class="sm">待结算：800.00</div>
+			<div>累计收益：{{ all }}</div>
+<!--			<div class="sm">待结算：800.00</div>-->
 		</header>
-		<my-list :incomeDate="data"></my-list>
+		<my-list :incomeData="data"></my-list>
 	</div>
 </template>
 
@@ -18,13 +18,20 @@
 		components: {
 			MyList
 		},
+		data(){
+			return{
+				all:0
+			}
+		},
 		async onShow() {
 			await this.getIncome()
 
 		},
-		computed: mapGetters('Income', {
-			data: state => state.data
-		}),
+
+		async onLoad(e){
+			this.all = e.all
+		},
+		computed: mapGetters('Income', ['data']),
 
 		methods: mapActions('Income', ['getIncome'])
 	})

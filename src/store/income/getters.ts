@@ -24,6 +24,7 @@ export function data(state: any) {
 	return data
 }
 
+
 export const today = (state: any) => {
 	let list = state.comeList.map(({ addDate, ...items }: any) => ({
 		year: new Date(addDate).getFullYear(),

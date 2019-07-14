@@ -1,6 +1,6 @@
 <template>
 	<div class="coll">
-		<section :key="index" v-for="(item,index) in data">
+		<section :key="index" v-for="(item,index) in incomeData">
 			<header @tap="changeOpenState(index)" class="header">
 				<div :class="['month',index === currentOpen?'open':'close']">
 					{{item.time}}
@@ -43,7 +43,12 @@
 
 	export default Vue.extend({
 		name: "lists",
-		props:['incomeData'],
+		props: {
+			'incomeData': {
+				type:Array,
+				default:[]
+			}
+		},
 		data() {
 			return {
 				currentOpen: 0

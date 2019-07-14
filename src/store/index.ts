@@ -8,6 +8,7 @@ import Commission from './commission'
 import Order from './order'
 import Income from './income'
 import Customer from './customer'
+import Message from './message'
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
 		Commission,
 		Order,
 		Income,
-		Customer
+		Customer,
+		Message
 	}
 })

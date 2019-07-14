@@ -14,7 +14,7 @@
 			ShopList
 		},
 		async onLoad(e){
-			await this.getCustomerOrderList(e.id)
+			await this.getCustomerOrderList(e ? e.id : '')
 		},
 		computed:mapState('Customer',['customerOrderList']),
 		methods:mapActions('Customer',['getCustomerOrderList'])
