@@ -4,8 +4,35 @@
 			<img alt="" src="../../static/last-b.png">
 
 			<div class="title">我的账户</div>
-
 			<div class="money">￥{{ balance }}</div>
+
+			<ul>
+				<li>
+					<div>
+						待结算:
+					</div>
+					<div>
+						100.00
+					</div>
+				</li>
+				<li>
+					<div>
+						消费返利:
+					</div>
+					<div>
+						100.00
+					</div>
+				</li>
+				<li>
+					<div>
+						可提现金额:
+					</div>
+					<div>
+						100.00
+					</div>
+				</li>
+			</ul>
+
 		</header>
 
 		<footer>
@@ -83,6 +110,20 @@
 			}
 		}
 
+
+		ul{
+			margin: upx(50) auto;
+			width: 80%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			font-size: upx(24);
+			font-weight: 600;
+			li{
+				width: 33%;
+				text-align: center;
+			}
+		}
 	}
 </style>
 

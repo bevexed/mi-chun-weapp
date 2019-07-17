@@ -1,24 +1,25 @@
 <template>
 	<div class="customer-list">
-		<ul>
-			<li
-				:class="{'active':index===current}"
-				:key="index"
-				@tap="changeTab(index)"
-				v-for="(item,index) in type"
-			>
-				{{item}}
-			</li>
-		</ul>
+<!--		<ul>-->
+<!--			<li-->
+<!--				:class="{'active':index===current}"-->
+<!--				:key="index"-->
+<!--				@tap="changeTab(index)"-->
+<!--				v-for="(item,index) in type"-->
+<!--			>-->
+<!--				{{item}}-->
+<!--			</li>-->
+<!--		</ul>-->
 
-		<div class="title">总人数：5人</div>
-		<person-list :fun="toCustomerListBuy"></person-list>
+<!--		<div class="title">总人数：5人</div>-->
+		<person-list :customerList="customerList" @toDetail="toCustomerListBuy"></person-list>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue'
 	import PersonList from '../../components/person-list/person-list.vue'
+	import { mapActions, mapState } from "vuex";
 
 	export default Vue.extend({
 		components: {
@@ -30,7 +31,12 @@
 				current: 0
 			}
 		},
+		async onShow() {
+			await this.getCustomer()
+		},
+		computed: mapState('Customer', ['customerList', 'totalCount']),
 		methods: {
+			...mapActions('Customer', ['getCustomer']),
 			toCustomerListBuy() {
 				wx.navigateTo({
 					url: '/pages/customer-list-buy/customer-list-buy?id=1'

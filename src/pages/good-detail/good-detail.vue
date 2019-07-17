@@ -102,7 +102,7 @@
 				this.popShow = false;
 
 				uni.navigateTo({
-					url:'/pages/submit-order/submit-order?sku='+this.skuId + '&count=' + this.count
+					url:'/pages/submit-order/submit-order?sku='+this.skuId + '&count=' + this.count + '&attr=' + this.cur
 				})
 			}
 		}

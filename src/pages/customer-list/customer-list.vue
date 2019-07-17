@@ -17,7 +17,6 @@
 		computed: mapState('Customer', ['customerList', 'totalCount']),
 		async onShow() {
 			await this.getCustomer()
-			console.log(this.customerList);
 		},
 		methods: {
 			...mapActions('Customer', ['getCustomer']),

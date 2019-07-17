@@ -13,7 +13,7 @@
 
 		<div class="content">
 			<ul>
-				<li>
+				<li v-if="withdrawOrderInfo.stateText">
 					<div class="label">
 						当前状态
 					</div>
@@ -21,16 +21,16 @@
 						{{withdrawOrderInfo.stateText }}
 					</div>
 				</li>
-				<li>
+				<li v-if="withdrawOrderInfo.money">
 					<div class="label">
 						提现金额
 					</div>
 					<div class="value">
-						{{withdrawOrderInfo.stateText }}
+						{{withdrawOrderInfo.money }}
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.tax">
 					<div class="label">
 						所得税
 					</div>
@@ -39,43 +39,43 @@
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.commission">
 					<div class="label">
 						手续费
 					</div>
 					<div class="value">
-						{{withdrawOrderInfo.stateText }}
+						{{withdrawOrderInfo.commission }}
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.addDate">
 					<div class="label">
 						申请时间
 					</div>
 					<div class="value">
-						{{withdrawOrderInfo.stateText }}
+						{{withdrawOrderInfo.addDate }}
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.payDate">
 					<div class="label">
 						到账时间
 					</div>
 					<div class="value">
-						{{withdrawOrderInfo.stateText }}
+						{{withdrawOrderInfo.payDate }}
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.accountText">
 					<div class="label">
 						提现银行
 					</div>
 					<div class="value">
-						{{withdrawOrderInfo.stateText }}
+						{{withdrawOrderInfo.accountText }}
 					</div>
 				</li>
 
-				<li>
+				<li v-if="withdrawOrderInfo.tradeNum">
 					<div class="label">
 						提现单号
 					</div>

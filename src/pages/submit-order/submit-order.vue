@@ -14,13 +14,13 @@
 			<div class="good-detail">
 				<img alt="" src="../../static/dev/1.jpg">
 				<div class="center">
-					<div class="good-name">Y1迷纯雾化器</div>
-					<div class="good-type">金色-标准款</div>
-					<div class="good-price">￥49.00</div>
+					<div class="good-name">{{ productInfo.productName }}</div>
+					<div class="good-type">{{ info }}</div>
+					<div class="good-price">￥{{ price }}</div>
 				</div>
 
 				<div class="num">
-					X1
+					X{{ counts }}
 				</div>
 			</div>
 
@@ -31,7 +31,7 @@
 				</li>
 				<li>
 					<div>合计</div>
-					<div class="red">￥39.00</div>
+					<div class="red">￥{{  price * (counts - 0) }}</div>
 				</li>
 				<li class="input">
 					<div>备注</div>
@@ -42,7 +42,7 @@
 
 		<aside>
 			<div class="title">实付款：</div>
-			<div class="red">￥39.00</div>
+			<div class="red">￥{{ price * (counts - 0) }}</div>
 			<my-button :height="70" :width="200" @tap="createOrder" title="付款"></my-button>
 		</aside>
 
@@ -92,18 +92,30 @@
 				counts: '',
 				addressId: '',
 
+				price:'',
+
+				info:'',
+
 
 				payMoney: ''
 			}
 		},
-		async onLoad(e: { count: string, sku: string }) {
-			const { count, sku } = e;
+		async onLoad(e: { count: string, sku: string,attr:string }) {
+			const { count, sku , attr} = e;
 			this.counts = count;
 			this.skus = sku;
 			await this.getAddressList()
+
+
 			this.addressId = this.addressList[0].id
+			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
+			this.info = this.productInfo.attribes[0].items[attr[0]].attributeTitle + this.productInfo.attribes[1].items[attr[2]].attributeTitle
+			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
 		},
-		computed: mapState('Address', ['addressList']),
+		computed: {
+			...mapState('Product', ['productInfo']),
+			...mapState('Address', ['addressList']),
+		},
 		methods: {
 			...mapActions('Address', ['getAddressList']),
 			toSelectAddress() {
