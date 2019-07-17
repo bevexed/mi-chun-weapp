@@ -8,7 +8,7 @@
 				</li>
 				<li>
 					<div class="left">本次提现</div>
-					<div class="right"><input placeholder="银行卡单笔最高提现5万" type="text"></div>
+					<div class="right"><input placeholder="银行卡单笔最高提现5万"  v-model="money" type="text"></div>
 				</li>
 			</ul>
 
@@ -16,18 +16,22 @@
 
 		<div class="wrap">
 			<ul>
-				<li @tap="selectBank">
+				<picker :range="accountList" @change="selectBank" range-key="_name">
+					<li>
 						<div class="left">提现账户</div>
 						<div class="right p">
-							{{ accountList[bank].name }}
-							<input @tap="toBank" disabled placeholder="去设置" type="text" v-if="bankList.length === 0">
+							{{ accountList[bank]._name }}
 						</div>
 					</li>
+				</picker>
 
 			</ul>
 		</div>
 
-		<my-button title="提现" margin="80" width="710"></my-button>
+		<my-button title="提现" margin="80" width="710" @tap="getPre({
+		accountId:accountList[bank].id,
+		money
+		})"></my-button>
 	</div>
 </template>
 
@@ -42,45 +46,52 @@
 		},
 		data() {
 			return {
-				bank: 0
+				bank: 0,
+				money: ''
 			}
 		},
 		computed: {
 			...mapState('Balance', ['balance']),
-			...mapState('Bank', ['bankList','accountList']),
+			...mapState('Bank', ['accountList']),
 		},
 		async onShow() {
 			//@ts-ignore
 			await this.getBalance();
 			await this.getAccountList();
 
-			if (this.bankList.length) {
-				this.bankList.push({
-					name: '添加银行卡',
-					id: -1
-				})
-			}
+			this.accountList.push({
+				_name: '添加银行卡',
+				id: -1
+			})
+
 
 		},
 		methods: {
 			...mapActions('Balance', ['getBalance']),
-			...mapActions('Bank',['getAccountList']),
+			...mapActions('Bank',['getAccountList','getPre']),
 
-			selectBank(){
-				uni.showActionSheet({
-					itemList: this.accountList.map(item => item.name),
-					success: res => {
-						console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
-						if (this.bankList[res.tapIndex].id === -1) {
-						 return 	this.toBank()
-						}
-						this.bank = res.tapIndex
+			selectBank(e) {
+				const { value } = e.detail;
+				this.bank = value
+				if (this.accountList[value].id === -1) {
+					return this.toBank()
+				}
+				// uni.showActionSheet({
+				// 	itemList: this.accountList.map(item => item.name + '（' + item.accountTailNumber +  '）'),
+				// 	success: res => {
+				// 		console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+				// 		if (this.accountList[res.tapIndex].id === -1) {
+				// 		 return 	this.toBank()
+				// 		}
+				// 		this.bank = res.tapIndex
+				//
+				// 	},
+				// 	fail: function (res) {
+				// 		console.log(res.errMsg);
+				// 	}
+				// });
 
-					},
-					fail: function (res) {
-						console.log(res.errMsg);
-					}
-				});
+
 			},
 
 			toBank(){

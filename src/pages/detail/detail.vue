@@ -6,8 +6,8 @@
 				<text class="title">{{ withdrawOrderInfo.accountText }}</text>
 				<text class="num">X10</text>
 			</div>
-			<div class="footer">
-				{{ withdrawOrderInfo.money.toFixed(2) }}
+			<div class="footer" v-if="withdrawOrderInfo.money">
+				{{ withdrawOrderInfo.money }}
 			</div>
 		</div>
 

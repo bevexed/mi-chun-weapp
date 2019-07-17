@@ -24,6 +24,7 @@
 
 		<my-button
 			@tap="addAccount({
+								bankName:bankList[bank].name,
 							 bankId:bankList[bank].id,
 								name,
 								account

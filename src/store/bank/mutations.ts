@@ -8,7 +8,12 @@ export default {
 		state.bankList = data
 	},
 	[GET_ACCOUNT_LIST](state: any, { data }: any) {
-		state.accountList = data
+		state.accountList = data.map(({ name, accountTailNumber, ...rest }:any) => ({
+			_name: name + '（' + accountTailNumber + '）',
+			accountTailNumber,
+			name,
+			...rest
+		}));
 	},
 	[GET_WITHDRAW_ORDER_LIST](state: any, { data }: any) {
 		state.withdrawOrderList = data.result

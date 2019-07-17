@@ -62,3 +62,31 @@ export const MSG_RELAUNCH = ({ title, url, icon = "success", during = 2000 }: Ms
 };
 
 export const TO = (url: string) => uni.navigateTo({ url });
+
+interface ShowModalOptions {
+	title:string,
+	content:string,
+	success:Function,
+	cancelText?:string,
+	cancelColor?:string,
+	confirmText?:string,
+	confirmColor?:string,
+}
+
+export const SHOW_MODAL = ({title,content,cancelText = '取消',cancelColor='#000000',confirmText='确认',confirmColor = '#000',success}:ShowModalOptions) =>{
+	uni.showModal({
+		title,
+		content,
+		confirmText,
+		confirmColor,
+		cancelText,
+		cancelColor,
+		success(res){
+			if(res.confirm){
+				success()
+			}else if(res.cancel){
+				console.log('取消');
+			}
+		}
+	})
+};

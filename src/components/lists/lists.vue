@@ -21,7 +21,7 @@
 						<section class="detail">
 							<header>{{ good.skuName || good.accountText }}</header>
 							<div>{{ good.typeText  || good.account}}</div>
-							<footer>{{ good.month }}月{{ good.day }}日</footer>
+							<footer>{{ good.month + 1}}月{{ good.day }}日</footer>
 						</section>
 
 						<div class="amount">x1</div>
