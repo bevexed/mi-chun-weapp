@@ -1,6 +1,6 @@
 <template>
 	<div class="submit-order">
-		<header @tap="toSelectAddress" class="add" v-for="(address,addressIndex) in addressList" v-if="addressIndex === 0"
+		<header @tap="toSelectAddress" class="add" v-for="(address,addressIndex) in addressList" v-if="addressIndex === current"
 						:key="addressIndex">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
@@ -76,7 +76,7 @@
 <script lang="ts">
 	import Vue from 'vue'
 	import myButton from '../../components/button/button.vue'
-	import { mapState, mapActions } from 'vuex';
+	import { mapState, mapActions, mapGetters } from 'vuex';
 	import { reqCreateOrder } from "@/api/order";
 
 	export default Vue.extend({
@@ -90,7 +90,6 @@
 
 				skus: '',
 				counts: '',
-				addressId: '',
 
 				price:'',
 
@@ -107,14 +106,15 @@
 			await this.getAddressList()
 
 
-			this.addressId = this.addressList[0].id
+
 			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
 			this.info = this.productInfo.attribes[0].items[attr[0]].attributeTitle + this.productInfo.attribes[1].items[attr[2]].attributeTitle
 			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
 		},
 		computed: {
 			...mapState('Product', ['productInfo']),
-			...mapState('Address', ['addressList']),
+			...mapState('Address', ['addressList','current']),
+			...mapGetters('Address',['addressId'])
 		},
 		methods: {
 			...mapActions('Address', ['getAddressList']),

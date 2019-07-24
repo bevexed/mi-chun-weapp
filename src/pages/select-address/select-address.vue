@@ -2,7 +2,7 @@
 	<div class="address">
 
 		<ul class="address-list">
-			<li v-for="(v,i) in addressList" :key="i">
+			<li v-for="(v,i) in addressList" :key="i" @tap="changeAddress(i)">
 				<section class="left">
 					<header>
 						{{ v.userName }} {{ v.phone }}
@@ -31,14 +31,20 @@
 	export default Vue.extend({
 		components: {uniIcon, MyButton},
 		data() {
-			return {}
+			return {
+				from:''
+			}
+		},
+		onLoad(e){
+			const {from} = e
+			this.from = from
 		},
 		onShow(){
 			this.getAddressList()
 		},
 		computed: mapState('Address', ['addressList']),
 		methods: {
-			...mapActions('Address', ['getAddressList']),
+			...mapActions('Address', ['getAddressList','changeAddress']),
 			toAddAddress() {
 				uni.navigateTo({
 					url: "/pages/add-address/add-address"

@@ -1,5 +1,5 @@
 import {
-	ADD_ADDRESS,
+	ADD_ADDRESS, EXCHANGE_ADDRESS_LIST,
 	GET_ADDRESS_LIST
 } from '../mutation-types';
 
@@ -39,3 +39,11 @@ export const updateAddress = async ({}, data: UpdateAddressOption) => {
 		})
 	}
 };
+
+export const changeAddress = async ({commit}:any,data:number)=>{
+	console.log(data);
+	commit(EXCHANGE_ADDRESS_LIST,data)
+	uni.navigateBack({
+		delta:1
+	})
+}

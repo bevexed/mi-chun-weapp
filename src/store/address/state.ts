@@ -1,3 +1,4 @@
 export default {
-    addressList:[]
+	addressList: [],
+	current: 0,
 }

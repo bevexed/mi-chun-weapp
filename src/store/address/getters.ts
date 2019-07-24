@@ -1,3 +1,4 @@
-export function data(state:any) {
-    return state.data;
+export const addressId = (state: any) => {
+	const { addressList, current } = state;
+	return addressList[current] && 	addressList[current].id
 }

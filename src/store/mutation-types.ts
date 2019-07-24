@@ -12,6 +12,7 @@ export const GET_ORDER_LIST = 'get_order_list';
 // 地址
 export const ADD_ADDRESS = 'add_address';
 export const GET_ADDRESS_LIST = 'get_address_list';
+export const EXCHANGE_ADDRESS_LIST ='exchange_address_list'
 
 // 收益
 export const GET_INCOME = 'get_income';
