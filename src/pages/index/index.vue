@@ -77,12 +77,12 @@
 
 			<section class="pattern">
 				<header class="no-way" v-if="info.partnerDidBind === 0">
-					<my-button :height="56" :margin="20" :width="180" title="去绑定"></my-button>
+					<my-button :height="56" :margin="20" :width="180" title="去绑定" @tap="toBind"></my-button>
 					<div>可选择绑定管理员获得无惩罚的佣金加成</div>
 				</header>
 
 					<!--todo:绑定，解绑弹窗-->
-				<header v-else>
+				<header v-if="info.partnerDidBind === 0">
 					<div class="left">
 						<div>
 							<span class="label">	合伙人：</span>
@@ -98,7 +98,7 @@
 
 
 					<div class="right">
-						<my-button :height="56" :width="160" title="解绑"></my-button>
+						<my-button :height="56" :width="160" title="解绑" @tap="relieve"></my-button>
 						<div>
 							活跃倒计时：<span>0 </span> 天
 						</div>
@@ -199,6 +199,7 @@
 
 	import MyButton from '@/components/button/button.vue'
 	import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
+	import { SHOW_MODAL } from "@/utils";
 
 	export default Vue.extend({
 			components: {
@@ -237,6 +238,20 @@
 				toCustomerListType() {
 					uni.navigateTo({
 						url: '/pages/customer-list-type/customer-list-type'
+					})
+				},
+				toBind(){
+					uni.navigateTo({
+						url:'/pages/bind/bind'
+					})
+				},
+				relieve(){
+					SHOW_MODAL({
+						content:'确认解绑吗？',
+						title:'',
+						success:()=>{
+							uni.alert(1)
+						}
 					})
 				}
 			}

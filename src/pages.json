@@ -129,6 +129,12 @@
 			"style": {
 				"navigationBarTitleText": "明细"
 			}
+		},
+		{
+			"path": "pages/bind/bind",
+			"style": {
+				"navigationBarTitleText": "迷纯PHRE"
+			}
 		}
 	],
 	"tabBar": {

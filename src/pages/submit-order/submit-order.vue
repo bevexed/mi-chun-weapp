@@ -54,17 +54,17 @@
 				</header>
 
 				<ul>
-					<li>
+					<li :class="{active:type === 'last'}" @tap="type = 'last'">
 						<img alt="" src="../../static/last.png">
 						<div>余额支付</div>
 					</li>
-					<li>
+					<li :class="{active:type === 'wxPay'}" @tap="type = 'wxPay'">
 						<img alt="" src="../../static/cute.png">
 						<div>微信钱包</div>
 					</li>
 				</ul>
 
-				<my-button :margin="60" :title="'支付￥'+payMoney"></my-button>
+				<my-button :margin="60" :title="'支付￥'+payMoney" @tap="pay"></my-button>
 
 
 			</section>
@@ -77,7 +77,7 @@
 	import Vue from 'vue'
 	import myButton from '../../components/button/button.vue'
 	import { mapState, mapActions, mapGetters } from 'vuex';
-	import { reqCreateOrder } from "@/api/order";
+	import { reqCreateOrder, reqWechatPay } from "@/api/order";
 
 	export default Vue.extend({
 		name: "submit-order",
@@ -96,7 +96,9 @@
 				info:'',
 
 
-				payMoney: ''
+				payMoney: '',
+
+				type: 'last'
 			}
 		},
 		async onLoad(e: { count: string, sku: string,attr:string }) {
@@ -131,8 +133,39 @@
 				if (res.code === 0) {
 					this.popShow = true
 					this.payMoney = res.data.totalPrice
+					this.orderNum = res.data.orderNum
 				}
-			}
+			},
+
+			change() {
+
+			},
+
+			async pay() {
+				const { type, orderNum } = this;
+				switch (type) {
+					case 'last':
+						break;
+					case 'wxPay':
+						let res = await reqWechatPay(orderNum);
+						if (res.code === 0) {
+							uni.requestPayment({
+								provider: "wxpay",
+								timeStamp: res.data.timestamp + '',
+								nonceStr: res.data.noncestr,
+								package: res.data.package,
+								paySign: res.data.sign,
+								signType:'MD5',
+								//@ts-ignore
+								success: (r: any): void => {
+									console.log(r);
+								}
+							})
+						}
+						break;
+				}
+
+			},
 		},
 
 
@@ -340,7 +373,6 @@
 			}
 
 			ul {
-				padding: 0 upx(40);
 				margin-bottom: upx(300);
 				@include bbt;
 
@@ -352,8 +384,13 @@
 					display: flex;
 					align-items: center;
 					padding: upx(40) 0;
+					margin: 0 0 0 upx(40);
 					@include bold(28);
 					@include bbt;
+
+					&.active {
+						background: #eee;
+					}
 
 
 					img {

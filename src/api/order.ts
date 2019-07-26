@@ -6,3 +6,5 @@ interface createOrderOptions {
 	skus: string, counts: string, addressId: string, recommendUserId?: number
 }
 export const reqCreateOrder = (data:createOrderOptions) => ajax('/order/create', data, 'POST');
+
+export const reqWechatPay = (orderNum:any)=> ajax('/order/pay/wechat',{orderNum},'POST');
