@@ -82,25 +82,28 @@
 				</header>
 
 					<!--todo:绑定，解绑弹窗-->
-				<header v-if="info.partnerDidBind === 0">
+				<header v-if="info.partnerDidBind === 1">
 					<div class="left">
 						<div>
 							<span class="label">	合伙人：</span>
 							<span class="value">杭州吴彦祖</span>
-							<span class="id">ID：12321321312</span>
+							<span class="id">ID：{{ info.partnerUserId }}</span>
+						</div>
+						<div class="label">
+							活跃倒计时：<span class="value" style="font-size:16rpx">{{ info.activityCountDownDay }} </span> 天
 						</div>
 
-						<div class="note">
-							（注：合伙人40天内未消费40元以上商品
-							或未有其他用户绑定，用户加成额度减半）
-						</div>
+<!--						<div class="note">-->
+<!--							（注：合伙人40天内未消费40元以上商品-->
+<!--							或未有其他用户绑定，用户加成额度减半）-->
+<!--						</div>-->
 					</div>
 
 
 					<div class="right">
 						<my-button :height="56" :width="160" title="解绑" @tap="relieve"></my-button>
 						<div>
-							活跃倒计时：<span>0 </span> 天
+<!--							活跃倒计时：<span>0 </span> 天-->
 						</div>
 					</div>
 
@@ -199,7 +202,8 @@
 
 	import MyButton from '@/components/button/button.vue'
 	import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
-	import { SHOW_MODAL } from "@/utils";
+	import { SHOW_MODAL, SHOW_MSG } from "@/utils";
+	import { reqUnBind } from "@/api/user";
 
 	export default Vue.extend({
 			components: {
@@ -207,7 +211,7 @@
 				uniNoticeBar,
 				MyButton
 			},
-			onLoad() {
+			onShow() {
 				this.getInfo();
 			},
 			data() {
@@ -249,8 +253,16 @@
 					SHOW_MODAL({
 						content:'确认解绑吗？',
 						title:'',
-						success:()=>{
-							uni.alert(1)
+						success:async()=>{
+							let res = await reqUnBind()
+							if (res.code === 0) {
+								SHOW_MSG({
+									title:'解除成功'
+								})
+								setTimeout(()=>{
+									this.getInfo()
+								},2000)
+							}
 						}
 					})
 				}
@@ -450,7 +462,9 @@
 
 
 				.right {
-					height: upx(200);
+					display: flex;
+					align-items: center;
+					/*height: upx(200);*/
 					width: upx(170);
 					@include bold(20);
 					margin-right: upx(20);

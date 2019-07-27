@@ -11,25 +11,41 @@
 			<my-button width="400" heiht="80" title='绑定官方合伙人'></my-button>
 			<text>绑定官方合伙人期间获得佣金和长期活跃加成</text>
 
-			<input type="text" placeholder="请输入绑定人ID">
-			<my-button width="400" heiht="80" title=' 绑定 '></my-button>
+			<input placeholder="请输入绑定人ID" type="text" v-model="userId">
+			<my-button @tap="bind" heiht="80" title=' 绑定 ' width="400"></my-button>
 		</div>
 	</div>
 </template>
 
 <script>
 	import myButton from '../../components/button/button.vue'
+	import { reqBind } from "../../api/user";
+	import { MSG_BACK } from "../../utils";
 
 	export default {
 		name: "bind",
 		components:{
 			myButton
 		},
+		data() {
+			return {
+				userId: ''
+			}
+		},
 		methods:{
 			back(){
 				uni.navigateBack({
 					delta:1
 				})
+			},
+			async bind() {
+				const {userId} = this
+				let res = await reqBind(userId)
+				if (res.code === 0) {
+					MSG_BACK({
+						title:'申请成功'
+					})
+				}
 			}
 		}
 	}
