@@ -3,7 +3,7 @@
 		<image class="shop-img" mode="widthFix" src="../../static/dev/1.jpg" v-for="(img,imgIndex) in sku.images" :key="imgIndex"></image>
 
 		<footer>
-			<div class="custom">客服</div>
+			<div class="custom"><button open-type="contact">客服</button></div>
 			<div class="buy" @tap="popShow = true">立即购买</div>
 		</footer>
 
@@ -274,6 +274,12 @@
 				color: #fff;
 				margin-bottom: upx(40);
 			}
+		}
+
+		button{
+			border: none !important;
+			outline: none !important;
+			height: upx(100);
 		}
 	}
 </style>

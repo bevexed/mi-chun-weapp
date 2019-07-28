@@ -4,7 +4,7 @@
 			<img alt="" src="../../static/last-b.png">
 
 			<div class="title">我的账户</div>
-			<div class="money">￥{{ balance }}</div>
+			<div class="money">￥{{ balance || 0 }}</div>
 
 			<ul>
 				<li>
@@ -12,7 +12,7 @@
 						待结算:
 					</div>
 					<div>
-						100.00
+						{{ waitCheckOut }}
 					</div>
 				</li>
 				<li>
@@ -20,7 +20,7 @@
 						消费返利:
 					</div>
 					<div>
-						100.00
+						{{ profit }}
 					</div>
 				</li>
 				<li>
@@ -28,7 +28,7 @@
 						可提现金额:
 					</div>
 					<div>
-						100.00
+						{{ canWithdrawAmount }}
 					</div>
 				</li>
 			</ul>
@@ -66,7 +66,7 @@
 		components: {
 			MyButton
 		},
-		computed:mapState('Balance',['balance']),
+		computed:mapState('Balance',['balance','waitCheckOut','canWithdrawAmount','profit']),
 		async onShow() {
 			//@ts-ignore
 			await this.getBalance()

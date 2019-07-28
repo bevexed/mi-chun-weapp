@@ -56,7 +56,10 @@
 				<ul>
 					<li :class="{active:type === 'last'}" @tap="type = 'last'">
 						<img alt="" src="../../static/last.png">
-						<div>余额支付</div>
+						<div class="flex">
+							<text>余额支付</text>
+							<text>{{ balance || 0}}</text>
+						</div>
 					</li>
 					<li :class="{active:type === 'wxPay'}" @tap="type = 'wxPay'">
 						<img alt="" src="../../static/cute.png">
@@ -77,7 +80,7 @@
 	import Vue from 'vue'
 	import myButton from '../../components/button/button.vue'
 	import { mapState, mapActions, mapGetters } from 'vuex';
-	import { reqCreateOrder, reqWechatPay } from "@/api/order";
+	import { reqCreateOrder, reqPayBalance, reqWechatPay } from "@/api/order";
 
 	export default Vue.extend({
 		name: "submit-order",
@@ -105,7 +108,8 @@
 			const { count, sku , attr} = e;
 			this.counts = count;
 			this.skus = sku;
-			await this.getAddressList()
+			await this.getAddressList();
+			await this.getBalance();
 
 
 
@@ -114,11 +118,13 @@
 			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
 		},
 		computed: {
+			...mapState('Balance', ['balance', 'waitCheckOut', 'canWithdrawAmount', 'profit']),
 			...mapState('Product', ['productInfo']),
 			...mapState('Address', ['addressList','current']),
 			...mapGetters('Address',['addressId'])
 		},
 		methods: {
+			...mapActions('Balance', ['getBalance']),
 			...mapActions('Address', ['getAddressList']),
 			toSelectAddress() {
 				uni.navigateTo({
@@ -144,24 +150,35 @@
 			async pay() {
 				const { type, orderNum } = this;
 				switch (type) {
-					case 'last':
+					case 'last': {
+						let res = await reqPayBalance(orderNum);
+						if (res.code === 0) {
+						}
 						break;
-					case 'wxPay':
+
+					}
+					case 'wxPay': {
 						let res = await reqWechatPay(orderNum);
 						if (res.code === 0) {
-							uni.requestPayment({
+							let data = {
 								provider: "wxpay",
 								timeStamp: res.data.timestamp + '',
 								nonceStr: res.data.noncestr,
-								package: res.data.package,
+								package: 'prepay_id=' + res.data.prepayid,
+								// package:res.data.package,
 								paySign: res.data.sign,
-								signType:'MD5',
+								signType: 'MD5'
+							};
+							console.log(data);
+							uni.requestPayment({
+								...data,
 								//@ts-ignore
 								success: (r: any): void => {
 									console.log(r);
 								}
 							})
 						}
+					}
 						break;
 				}
 
@@ -383,8 +400,8 @@
 				li {
 					display: flex;
 					align-items: center;
-					padding: upx(40) 0;
-					margin: 0 0 0 upx(40);
+					padding: upx(40);
+					margin: 0 0 0 0;
 					@include bold(28);
 					@include bbt;
 
@@ -405,5 +422,13 @@
 				}
 			}
 		}
+
+		.flex{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+
 	}
 </style>
