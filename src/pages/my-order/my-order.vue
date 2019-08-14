@@ -88,7 +88,7 @@
 			...mapActions('Order', ['getOrderList']),
 
 			async doComplete(url: string) {
-				let res = await ajax(url, {}, 'GET');
+				let res = await ajax(url, {}, 'POST');
 				if (res.code === 0){
 					await this.getOrderList({});
 					uni.showToast({title:'操作成功'})

@@ -98,7 +98,6 @@
 
 				info:'',
 
-
 				payMoney: '',
 
 				type: 'last'
@@ -171,7 +170,13 @@
 							};
 							console.log(data);
 							uni.requestPayment({
-								...data,
+								provider: "wxpay",
+								timeStamp: res.data.timestamp + '',
+								nonceStr: res.data.noncestr,
+								package: 'prepay_id=' + res.data.prepayid,
+								// package:res.data.package,
+								paySign: res.data.sign,
+								signType: 'MD5',
 								//@ts-ignore
 								success: (r: any): void => {
 									console.log(r);
