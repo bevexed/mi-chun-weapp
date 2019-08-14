@@ -178,7 +178,7 @@
 								paySign: res.data.sign,
 								signType: 'MD5',
 								//@ts-ignore
-								success: (r: any): void => {
+								success: (r: any) => {
 									console.log(r);
 								}
 							})
