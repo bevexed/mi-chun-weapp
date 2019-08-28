@@ -1,8 +1,7 @@
 <template>
 	<div>
-		<div  v-for="(product,index) in productList">
-			<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" :src="product.images" :key="index" alt=""/>
-
+		<div  v-for="(product,index) in productList"  :key="index">
+				<img @tap="TO('/pages/good-detail/good-detail?skuId=' + product.skuId)" v-for="(pic,i) in product.images" mode="widthFix" v-if="i === 0" :src="pic" :key="i" alt=""/>
 		</div>
 	</div>
 </template>

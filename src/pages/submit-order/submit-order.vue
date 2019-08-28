@@ -9,6 +9,13 @@
 			</div>
 		</header>
 
+		<header class="add" v-if="addressList.length === 0">
+			<img alt="" src="../../static/address.png">
+			<div class="right">
+				<div class="address">新增地址</div>
+			</div>
+		</header>
+
 
 		<footer>
 			<div class="good-detail">
@@ -20,7 +27,7 @@
 				</div>
 
 				<div class="num">
-					X{{ counts }}
+					×{{ counts }}
 				</div>
 			</div>
 
@@ -110,8 +117,6 @@
 			await this.getAddressList();
 			await this.getBalance();
 
-
-
 			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
 			this.info = this.productInfo.attribes[0].items[attr[0]].attributeTitle + this.productInfo.attribes[1].items[attr[2]].attributeTitle
 			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
@@ -169,6 +174,7 @@
 								signType: 'MD5'
 							};
 							console.log(data);
+							//@ts-ignore
 							uni.requestPayment({
 								provider: "wxpay",
 								timeStamp: res.data.timestamp + '',

@@ -119,12 +119,14 @@
 			"style": {
 				"navigationBarTitleText": "今日收益"
 			}
-		},{
+		},
+		{
 			"path": "pages/bank/bank",
 			"style": {
 				"navigationBarTitleText": "添加银行卡"
 			}
-		},{
+		},
+		{
 			"path": "pages/detail/detail",
 			"style": {
 				"navigationBarTitleText": "明细"
@@ -135,8 +137,12 @@
 			"style": {
 				"navigationBarTitleText": "迷纯PHRE"
 			}
-		},{
+		},
+		{
 			"path": "pages/login/login"
+		},
+		{
+			"path": "pages/share/share"
 		}
 	],
 	"tabBar": {

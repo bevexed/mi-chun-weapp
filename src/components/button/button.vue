@@ -9,6 +9,7 @@
 			color: color,
 			margin:`${margin/2}px auto`,
 		}"
+			:open-type="openType"
 			:class="['button',{'border':border}]">{{title}}
 		</button>
 	</view>
@@ -47,6 +48,10 @@
 			margin: {
 				type: Number,
 				default: 0
+			},
+			openType:{
+				type: String,
+				default: ''
 			}
 		}
 	})
@@ -58,9 +63,10 @@
 		text-align: center;
 		background: #000;
 		color: #fff;
-		font-size: upx(24);
+		font-size: upx(28);
 		font-family: PingFangSC-Regular, serif;
 		font-weight: 400;
+		letter-spacing: .05em;
 		box-shadow: upx(4) upx(4) upx(20) 0 rgba(0, 0, 0, 0.25);
 	}
 

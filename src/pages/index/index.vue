@@ -188,6 +188,7 @@
 		<div class="fix">
 			<my-button
 				title="分享推广商品"
+				open-type="share"
 			></my-button>
 		</div>
 
@@ -214,6 +215,16 @@
 			onShow() {
 				this.getInfo();
 			},
+
+		onShareAppMessage(res:any) {
+			if (res.from === 'button') {// 来自页面内分享按钮
+				console.log(res.target)
+			}
+			return {
+				title: '迷唇PHRE',
+				path: '/pages/share/share?id=123'
+			}
+		},
 			data() {
 				return {
 					info: {},
