@@ -9,7 +9,7 @@
 			</div>
 		</header>
 
-		<header class="add" v-if="addressList.length === 0">
+		<header class="add" v-if="addressList.length === 0" @tap="toSelectAddress">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
 				<div class="address">新增地址</div>
@@ -164,28 +164,19 @@
 					case 'wxPay': {
 						let res = await reqWechatPay(orderNum);
 						if (res.code === 0) {
-							let data = {
-								provider: "wxpay",
-								timeStamp: res.data.timestamp + '',
-								nonceStr: res.data.noncestr,
-								package: 'prepay_id=' + res.data.prepayid,
-								// package:res.data.package,
-								paySign: res.data.sign,
-								signType: 'MD5'
-							};
-							console.log(data);
 							//@ts-ignore
 							uni.requestPayment({
 								provider: "wxpay",
-								timeStamp: res.data.timestamp + '',
-								nonceStr: res.data.noncestr,
+								timeStamp: res.data.timeStamp + '',
+								nonceStr: res.data.nonceStr,
 								package: 'prepay_id=' + res.data.prepayid,
-								// package:res.data.package,
 								paySign: res.data.sign,
 								signType: 'MD5',
 								//@ts-ignore
 								success: (r: any) => {
-									console.log(r);
+									uni.navigateTo({
+										url:'/pages/my-order/my-order'
+									})
 								}
 							})
 						}
