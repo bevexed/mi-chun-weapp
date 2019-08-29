@@ -3,7 +3,14 @@ import {
 	GET_ADDRESS_LIST
 } from '../mutation-types';
 
-import { reqAddAddress, Address, reqAddress, UpdateAddressOption, reqUpdateAddress } from "@/api/address";
+import {
+	reqAddAddress,
+	Address,
+	reqAddress,
+	UpdateAddressOption,
+	reqUpdateAddress,
+	reqDelAddress
+} from "@/api/address";
 import { MSG_BACK, SHOW_MSG } from "@/utils";
 
 export const getAddAddress = async ({ commit }: any, data: Address) => {
@@ -46,4 +53,13 @@ export const changeAddress = async ({commit}:any,data:number)=>{
 	uni.navigateBack({
 		delta:1
 	})
+};
+
+export const delAddress = async ({commit,dispatch}:any,data:number)=>{
+	let res = await reqDelAddress(data);
+	if (res.code === 0) {
+		MSG_BACK({
+			title:'删除地址成功',
+		});
+	}
 }

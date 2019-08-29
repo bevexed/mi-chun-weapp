@@ -15,3 +15,5 @@ export interface UpdateAddressOption extends Address {
 }
 
 export const reqUpdateAddress = (data: UpdateAddressOption) => ajax('/address/update', data, 'POST');
+
+export const reqDelAddress = (addressId:number) => ajax('/address/delete', {addressId},'GET');

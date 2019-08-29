@@ -48,7 +48,7 @@
 		userName,
 		phone
 		})"></my-button>
-		<my-button @tap="saveAddress" background-color="#fff" :border="false" color="#000" :height="100" :margin="-60"
+		<my-button @tap="delAddress(addressId)" background-color="#fff" :border="false" color="#000" :height="100" :margin="-60"
 							 title="删除收货地址" :width="710"></my-button>
 	</div>
 </template>
@@ -81,7 +81,7 @@
 			this.phone = phone;
 		},
 		computed: mapState('Address', ['addressList']),
-		methods: mapActions('Address', ['getAddressList', 'updateAddress']),
+		methods: mapActions('Address', ['getAddressList', 'updateAddress','delAddress']),
 
 	});
 </script>
