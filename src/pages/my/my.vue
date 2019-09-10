@@ -1,10 +1,10 @@
 <template>
 	<div class="my">
 		<section class="header">
-			<img alt="" src="../../static/avatar.png"/>
+			<img alt="" :src="avatarUrl"/>
 			<section>
-				<div>刘强东的兄弟</div>
-				<div>ID：98785786</div>
+				<div>{{ nickName }}</div>
+				<div>ID：{{ userData.userId }}</div>
 			</section>
 		</section>
 
@@ -75,10 +75,36 @@
 
 <script lang="ts">
 	import Vue from 'vue'
+  import { mapActions, mapState } from 'vuex';
 
 	export default Vue.extend({
 		name: "my",
-		methods: {
+		data(){
+		  return{
+		    nickName:'',
+        avatarUrl:''
+			}
+		},
+    computed:mapState('User',['userData']),
+		onLoad(){
+      console.log(this.userData);
+      wx.getUserInfo({
+				//@ts-ignore
+        success: res => {
+          // 可以将 res 发送给后台解码出 unionId
+          console.log(res.userInfo);
+          const {nickName,avatarUrl} = res.userInfo;
+          this.nickName =nickName;
+					this.avatarUrl = avatarUrl;
+          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+          // 所以此处加入 callback 以防止这种情况
+          if (this.userInfoReadyCallback) {
+            this.userInfoReadyCallback(res)
+          }
+        }
+      })
+    },
+    methods: {
 			toAccount() {
 				uni.navigateTo({
 					url: '/pages/account/account'

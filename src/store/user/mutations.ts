@@ -3,7 +3,8 @@ import {
 } from '../mutation-types';
 
 export default {
-	[USER_LOGIN](state: any, { data }: any) {
+	[USER_LOGIN](state: any,  data : any) {
+		console.log(1,data);
 		state.userData = data;
 	},
 };
