@@ -1,15 +1,17 @@
 <template>
 	<div class="submit-order">
-		<header @tap="toSelectAddress" class="add" v-for="(address,addressIndex) in addressList" v-if="addressIndex === current"
-						:key="addressIndex">
+		<header :key="addressIndex" @tap="toSelectAddress" class="add"
+						v-for="(address,addressIndex) in addressList"
+						v-if="addressIndex === current">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
-				<div class="name">{{ address.userName }} <span class="phone">{{ address.phone }}</span></div>
+				<div class="name">{{ address.userName }} <span class="phone">{{ address.phone }}</span>
+				</div>
 				<div class="address">{{ address.address }}</div>
 			</div>
 		</header>
 
-		<header class="add" v-if="addressList.length === 0" @tap="toSelectAddress">
+		<header @tap="toSelectAddress" class="add" v-if="addressList.length === 0">
 			<img alt="" src="../../static/address.png">
 			<div class="right">
 				<div class="address">新增地址</div>
@@ -38,7 +40,7 @@
 				</li>
 				<li>
 					<div>合计</div>
-					<div class="red">￥{{  price * (counts - 0) }}</div>
+					<div class="red">￥{{ price * (counts - 0) }}</div>
 				</li>
 				<li class="input">
 					<div>备注</div>
@@ -50,11 +52,13 @@
 		<aside>
 			<div class="title">实付款：</div>
 			<div class="red">￥{{ price * (counts - 0) }}</div>
-			<my-button :height="70" :width="200" @tap="createOrder" title="付款"></my-button>
+			<my-button :height="70" :width="200" @tap="createOrder"
+								 title="付款"></my-button>
 		</aside>
 
 
-		<section :class="['pop-warp',  {'pop-warp-open':popShow}]" @tap.stop="popShow = false">
+		<section :class="['pop-warp',  {'pop-warp-open':popShow}]"
+						 @tap.stop="popShow = false">
 			<section :class="['pop',  {'pop-open':popShow}]" @tap.stop>
 				<header class="title">
 					<h1>选择支付方式</h1>
@@ -84,111 +88,119 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue'
-	import myButton from '../../components/button/button.vue'
-	import { mapState, mapActions, mapGetters } from 'vuex';
-	import { reqCreateOrder, reqPayBalance, reqWechatPay } from "@/api/order";
+  import Vue from 'vue'
+  import myButton from '../../components/button/button.vue'
+  import { mapState, mapActions, mapGetters } from 'vuex';
+  import { reqCreateOrder, reqPayBalance, reqWechatPay } from "@/api/order";
 
-	export default Vue.extend({
-		name: "submit-order",
-		components: {
-			myButton
-		},
-		data() {
-			return {
-				popShow: false,
+  export default Vue.extend({
+    name: "submit-order",
+    components: {
+      myButton
+    },
+    data() {
+      return {
+        popShow: false,
 
-				skus: '',
-				counts: '',
+        skus: '',
+        counts: '',
 
-				price:'',
+        price: '',
 
-				info:'',
+        info: '',
 
-				payMoney: '',
+        payMoney: '',
 
-				type: 'last'
-			}
-		},
-		async onLoad(e: { count: string, sku: string,attr:string }) {
-			const { count, sku , attr} = e;
-			this.counts = count;
-			this.skus = sku;
-			await this.getAddressList();
-			await this.getBalance();
+        type: 'last'
+      }
+    },
+    async onLoad(e: { count: string, sku: string, attr: string }) {
+      const { count, sku, attr } = e;
+      this.counts = count;
+      this.skus = sku;
+      await this.getAddressList();
+      await this.getBalance();
 
-			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
-			this.info = this.productInfo.attribes[0].items[attr[0]].attributeTitle + this.productInfo.attribes[1].items[attr[2]].attributeTitle
-			this.price = this.productInfo.skus.filter((item:any)=> item.skuId === Number(sku))[0].couponPrice
-		},
-		computed: {
-			...mapState('Balance', ['balance', 'waitCheckOut', 'canWithdrawAmount', 'profit']),
-			...mapState('Product', ['productInfo']),
-			...mapState('Address', ['addressList','current']),
-			...mapGetters('Address',['addressId'])
-		},
-		methods: {
-			...mapActions('Balance', ['getBalance']),
-			...mapActions('Address', ['getAddressList']),
-			toSelectAddress() {
-				uni.navigateTo({
-					url: '/pages/select-address/select-address'
-				})
-			},
+      this.price = this.productInfo.skus.filter((item: any) => item.skuId === Number(sku))[0].couponPrice;
+      this.info = this.productInfo.attribes[0].items[attr[0]].attributeTitle + this.productInfo.attribes[1].items[attr[2]].attributeTitle;
+      this.price = this.productInfo.skus.filter((item: any) => item.skuId === Number(sku))[0].couponPrice
+    },
+    computed: {
+      ...mapState('Balance', ['balance', 'waitCheckOut', 'canWithdrawAmount', 'profit']),
+      ...mapState('Product', ['productInfo']),
+      ...mapState('Address', ['addressList', 'current']),
+      ...mapGetters('Address', ['addressId'])
+    },
+    methods: {
+      ...mapActions('Balance', ['getBalance']),
+      ...mapActions('Address', ['getAddressList']),
+      toSelectAddress() {
+        uni.navigateTo({
+          url: '/pages/select-address/select-address'
+        })
+      },
 
-			async createOrder() {
-				const { skus, counts, addressId, popShow } = this;
-				let res = await reqCreateOrder({ skus, counts, addressId })
+      async createOrder() {
+        const { skus, counts, addressId, popShow } = this;
+        if (!addressId) {
+          return uni.showToast({
+            title: '请先选择地址'
+          })
+        }
+        let res = await reqCreateOrder({ skus, counts, addressId });
 
-				if (res.code === 0) {
-					this.popShow = true
-					this.payMoney = res.data.totalPrice
-					this.orderNum = res.data.orderNum
-				}
-			},
+        if (res.code === 0) {
+          this.popShow = true;
+          this.payMoney = res.data.totalPrice;
+          this.orderNum = res.data.orderNum
+        }
+      },
 
-			change() {
+      change() {
 
-			},
+      },
 
-			async pay() {
-				const { type, orderNum } = this;
-				switch (type) {
-					case 'last': {
-						let res = await reqPayBalance(orderNum);
-						if (res.code === 0) {
-						}
-						break;
+      async pay() {
+        const { type, orderNum } = this;
+        switch (type) {
+          case 'last': {
+            let res = await reqPayBalance(orderNum);
+            if (res.code === 0) {
+              uni.redirectTo({
+                url: '/pages/my-order/my-order'
+              })
+            }
+            break;
 
-					}
-					case 'wxPay': {
-						let res = await reqWechatPay(orderNum);
-						if (res.code === 0) {
-							//@ts-ignore
-							uni.requestPayment({
-								provider: "wxpay",
-								timeStamp: res.data.timeStamp + '',
-								nonceStr: res.data.nonceStr,
-								package: 'prepay_id=' + res.data.prepayid,
-								paySign: res.data.sign,
-								signType: 'MD5',
-								//@ts-ignore
-								success: (r: any) => {
-									uni.navigateTo({
-										url:'/pages/my-order/my-order'
-									})
-								}
-							})
-						}
-					}
-						break;
-				}
+          }
+          case 'wxPay': {
+            let res = await reqWechatPay(orderNum);
+            if (res.code === 0) {
+              //@ts-ignore
+              uni.requestPayment({
+                provider: "wxpay",
+                timeStamp: res.data.timeStamp + '',
+                nonceStr: res.data.nonceStr,
+                package: 'prepay_id=' + res.data.prepayid,
+                paySign: res.data.sign,
+                signType: 'MD5',
+                //@ts-ignore
+                success: (r: any) => {
+                  uni.redirectTo({
+                    url: '/pages/my-order/my-order'
+                  })
+                }
+              })
+            }
+          }
+            break;
+        }
 
-			},
-		},
+      },
+    },
 
 
-	})
+  })
 </script>
 
 <style lang="scss" scoped>
@@ -425,7 +437,7 @@
 			}
 		}
 
-		.flex{
+		.flex {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;

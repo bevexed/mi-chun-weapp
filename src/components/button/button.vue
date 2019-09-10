@@ -1,6 +1,9 @@
 <template>
 	<view>
 		<button
+			@getuserinfo="getUserInfo"
+			:class="['button',{'border':border}]"
+			:open-type="openType"
 			:style="{
 			width: width/2 + 'px',
 			height: height/2  + 'px',
@@ -8,53 +11,55 @@
 			background: backgroundColor,
 			color: color,
 			margin:`${margin/2}px auto`,
-		}"
-			:open-type="openType"
-			:class="['button',{'border':border}]">{{title}}
+		}">{{title}}
 		</button>
 	</view>
 </template>
 
 <script lang="ts">
-	import Vue from 'vue'
+  import Vue from 'vue'
 
-	export default Vue.extend({
-		name: "my-button",
-		props: {
-			title: {
-				type: String,
-				default: 'default'
-			},
-			height: {
-				type: Number,
-				default: 80,
-			},
-			width: {
-				type: Number,
-				default: 670,
-			},
-			backgroundColor: {
-				type: String,
-				default: '#000',
-			},
-			color: {
-				type: String,
-				default: '#fff',
-			},
-			border: {
-				type: Boolean,
-				default: true,
-			},
-			margin: {
-				type: Number,
-				default: 0
-			},
-			openType:{
-				type: String,
-				default: ''
+  export default Vue.extend({
+    name: "my-button",
+    props: {
+      title: {
+        type: String,
+        default: 'default'
+      },
+      height: {
+        type: Number,
+        default: 80,
+      },
+      width: {
+        type: Number,
+        default: 670,
+      },
+      backgroundColor: {
+        type: String,
+        default: '#000',
+      },
+      color: {
+        type: String,
+        default: '#fff',
+      },
+      border: {
+        type: Boolean,
+        default: true,
+      },
+      margin: {
+        type: Number,
+        default: 0
+      },
+      openType: {
+        type: String,
+        default: ''
+      },
+      getUserInfo:{
+        type:Function,
+				default:(e:any)=>{}
 			}
-		}
-	})
+    },
+  })
 </script>
 
 <style lang="scss" scoped>
