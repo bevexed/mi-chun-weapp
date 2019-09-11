@@ -1,10 +1,10 @@
 <template>
-	<view class="content">
+	<div class="content" v-if="login">
 		<section class="board">
 			<header @tap="toAllCome(info.profit)">
 				<div class="title">累计收益（元）</div>
 				<div class="title-money">{{ info.profit}}</div>
-<!--				<div class="title">待结算：360.00</div>-->
+				<!--				<div class="title">待结算：360.00</div>-->
 			</header>
 
 			<footer>
@@ -34,14 +34,15 @@
 						:show-icon="true"
 						:single="true"
 						:speed="50"
+						:text="activity.tips"
 						background-color="#ffffff"
-						color="#666"
-						:text="activity.tips">
+						color="#666">
 					</uni-notice-bar>
 				</section>
 
-				<section :style="{background:`linear-gradient(90deg, #333 ${activity.progress * 100}%, #fff 0);`}"
-								 class="progress">
+				<section
+					:style="{background:`linear-gradient(90deg, #333 ${activity.progress * 100}%, #fff 0);`}"
+					class="progress">
 					{{ activity.progressText }}
 				</section>
 
@@ -49,9 +50,9 @@
 
 					<section class="pie">
 						<pie-chart
-							v-if="activity.consumeProgress"
 							:a="activity.consumeProgress"
-							:b="activity.hardWareProgress">
+							:b="activity.hardWareProgress"
+							v-if="activity.consumeProgress">
 						</pie-chart>
 					</section>
 
@@ -77,11 +78,12 @@
 
 			<section class="pattern">
 				<header class="no-way" v-if="info.partnerDidBind === 0">
-					<my-button :height="56" :margin="20" :width="180" title="去绑定" @tap="toBind"></my-button>
+					<my-button :height="56" :margin="20" :width="180" @tap="toBind"
+										 title="去绑定"></my-button>
 					<div>可选择绑定管理员获得无惩罚的佣金加成</div>
 				</header>
 
-					<!--todo:绑定，解绑弹窗-->
+				<!--todo:绑定，解绑弹窗-->
 				<header v-if="info.partnerDidBind === 1">
 					<div class="left">
 						<div>
@@ -90,20 +92,22 @@
 							<span class="id">ID：{{ info.partnerUserId }}</span>
 						</div>
 						<div class="label">
-							活跃倒计时：<span class="value" style="font-size:16rpx">{{ info.activityCountDownDay }} </span> 天
+							活跃倒计时：<span class="value" style="font-size:16rpx">{{ info.activityCountDownDay }} </span>
+							天
 						</div>
 
-<!--						<div class="note">-->
-<!--							（注：合伙人40天内未消费40元以上商品-->
-<!--							或未有其他用户绑定，用户加成额度减半）-->
-<!--						</div>-->
+						<!--						<div class="note">-->
+						<!--							（注：合伙人40天内未消费40元以上商品-->
+						<!--							或未有其他用户绑定，用户加成额度减半）-->
+						<!--						</div>-->
 					</div>
 
 
 					<div class="right">
-						<my-button :height="56" :width="160" title="解绑" @tap="relieve"></my-button>
+						<my-button :height="56" :width="160" @tap="relieve"
+											 title="解绑"></my-button>
 						<div>
-<!--							活跃倒计时：<span>0 </span> 天-->
+							<!--							活跃倒计时：<span>0 </span> 天-->
 						</div>
 					</div>
 
@@ -131,7 +135,9 @@
 						<div>+</div>
 						<div>{{ info.hardwareCommissionRatioRelatived }}%</div>
 						<div>=</div>
-						<div>{{ info.hardwareCommissionRatioFlexed + info.hardwareCommissionRatioRelatived }}%</div>
+						<div>{{ info.hardwareCommissionRatioFlexed +
+							info.hardwareCommissionRatioRelatived }}%
+						</div>
 					</div>
 
 					<div class="tr">
@@ -140,7 +146,9 @@
 						<div>+</div>
 						<div>{{ info.consumeCommissionRatioRelatived }}%</div>
 						<div>=</div>
-						<div>{{ info.consumeCommissionRatioFlexed + info.consumeCommissionRatioRelatived }}%</div>
+						<div>{{ info.consumeCommissionRatioFlexed +
+							info.consumeCommissionRatioRelatived }}%
+						</div>
 					</div>
 
 				</section>
@@ -164,7 +172,9 @@
 						<div>+</div>
 						<div>{{ info.hardwareFanliRatioRelatived }}%</div>
 						<div>=</div>
-						<div>{{ info.hardwareFanliRatioFlexed + info.hardwareFanliRatioRelatived }}%</div>
+						<div>{{ info.hardwareFanliRatioFlexed +
+							info.hardwareFanliRatioRelatived }}%
+						</div>
 					</div>
 
 					<div class="tr">
@@ -173,113 +183,125 @@
 						<div>+</div>
 						<div>{{ info.consumeFanliRatioRelatived }}%</div>
 						<div>=</div>
-						<div>{{ info.consumeFanliRatioFlexed + info.consumeFanliRatioRelatived}}%</div>
+						<div>{{ info.consumeFanliRatioFlexed +
+							info.consumeFanliRatioRelatived}}%
+						</div>
 					</div>
 				</section>
 
-				<img src="../../static/index/index_1.jpg" alt="" mode="widthFix">
+				<img alt="" mode="widthFix" src="../../static/index/index_1.jpg">
 			</section>
 
 		</footer>
 
-		<img class="index_2" src="../../static/index/index_2.jpg" alt="" mode="widthFix">
+		<img alt="" class="index_2" mode="widthFix"
+				 src="../../static/index/index_2.jpg">
 
 		<div style="padding:40px 0"></div>
 		<div class="fix">
 			<my-button
-				title="分享推广商品"
 				open-type="share"
+				title="分享推广商品"
 			></my-button>
 		</div>
 
 
-	</view>
+	</div>
+	<login v-else @hidden="loginHide"/>
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import PieChart from './PieChart.vue'
-	import { reqInfo } from "@/api/home";
+  import Vue from 'vue';
+  import PieChart from './PieChart.vue'
+  import Login from '../login/login.vue'
+  import { reqInfo } from "@/api/home";
 
-	import MyButton from '@/components/button/button.vue'
-	import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
-	import { SHOW_MODAL, SHOW_MSG } from "@/utils";
-	import { reqUnBind } from "@/api/user";
+  import MyButton from '@/components/button/button.vue'
+  import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
+  import { SHOW_MODAL, SHOW_MSG } from "@/utils";
+  import { reqUnBind } from "@/api/user";
+  import { mapState } from "vuex";
 
-	export default Vue.extend({
-			components: {
-				PieChart,
-				uniNoticeBar,
-				MyButton
-			},
-			onShow() {
-				this.getInfo();
-			},
+  export default Vue.extend({
+      components: {
+        PieChart,
+        uniNoticeBar,
+        MyButton,
+        Login
+      },
+      onShow() {
+        this.getInfo();
+      },
 
-		onShareAppMessage(res:any) {
-			if (res.from === 'button') {// 来自页面内分享按钮
-				console.log(res.target)
-			}
-			return {
-				title: '迷唇PHRE',
-				path: '/pages/share/share?id=123'
-			}
-		},
-			data() {
-				return {
-					info: {},
-					activity:{}
-				}
-			},
-			methods: {
-				async getInfo() {
-					let res = await reqInfo();
-					if (res.code === 0) {
-						this.info = res.data;
-						this.activity = res.data.activity
-					}
-				},
+      onShareAppMessage(res: any) {
+        if (res.from === 'button') {// 来自页面内分享按钮
+          console.log(res.target)
+        }
+        return {
+          title: '迷唇PHRE',
+          path: '/pages/share/share?id=123'
+        }
+      },
+		computed:mapState('User',['login']),
+      data() {
+        return {
+          info: {},
+          activity: {}
+        }
+      },
+      methods: {
+        async getInfo() {
+          let res = await reqInfo();
+          if (res.code === 0) {
+            this.info = res.data;
+            this.activity = res.data.activity
+          }
+        },
 
-				toAllCome(all:any) {
-					uni.navigateTo({
-						url: '/pages/all-come/all-come?all='+all
-					})
-				},
-				toTodayCome() {
-					uni.navigateTo({
-						url: '/pages/today-come/today-come'
-					})
-				},
-				toCustomerListType() {
-					uni.navigateTo({
-						url: '/pages/customer-list-type/customer-list-type'
-					})
-				},
-				toBind(){
-					uni.navigateTo({
-						url:'/pages/bind/bind'
-					})
-				},
-				relieve(){
-					SHOW_MODAL({
-						content:'确认解绑吗？',
-						title:'',
-						success:async()=>{
-							let res = await reqUnBind()
-							if (res.code === 0) {
-								SHOW_MSG({
-									title:'解除成功'
-								})
-								setTimeout(()=>{
-									this.getInfo()
-								},2000)
-							}
-						}
-					})
-				}
-			}
-		}
-	);
+        toAllCome(all: any) {
+          uni.navigateTo({
+            url: '/pages/all-come/all-come?all=' + all
+          })
+        },
+        toTodayCome() {
+          uni.navigateTo({
+            url: '/pages/today-come/today-come'
+          })
+        },
+        toCustomerListType() {
+          uni.navigateTo({
+            url: '/pages/customer-list-type/customer-list-type'
+          })
+        },
+        toBind() {
+          uni.navigateTo({
+            url: '/pages/bind/bind'
+          })
+        },
+        relieve() {
+          SHOW_MODAL({
+            content: '确认解绑吗？',
+            title: '',
+            success: async () => {
+              let res = await reqUnBind();
+              if (res.code === 0) {
+                SHOW_MSG({
+                  title: '解除成功'
+                });
+                setTimeout(() => {
+                  this.getInfo()
+                }, 2000)
+              }
+            }
+          })
+        },
+				loginHide(e:any){
+          console.log(3);
+          console.log(e);
+        }
+      }
+    }
+  );
 </script>
 
 <style lang="scss" scoped>
@@ -579,11 +601,11 @@
 			font-size: upx(20);
 		}
 
-		.index_2{
+		.index_2 {
 			width: 100vw;
 		}
 
-		.fix{
+		.fix {
 			position: fixed;
 			bottom: upx(40);
 			left: 0;

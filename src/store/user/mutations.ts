@@ -7,4 +7,7 @@ export default {
 		console.log(1,data);
 		state.userData = data;
 	},
+	login(state: any,  data : any) {
+		state.login = data;
+	},
 };

@@ -88,9 +88,9 @@
     computed:mapState('User',['userData']),
 		onLoad(){
       console.log(this.userData);
-      wx.getUserInfo({
+      uni.getUserInfo({
 				//@ts-ignore
-        success: res => {
+        success: (res:any) => {
           // 可以将 res 发送给后台解码出 unionId
           console.log(res.userInfo);
           const {nickName,avatarUrl} = res.userInfo;
